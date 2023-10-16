@@ -27,7 +27,7 @@ const routes = [
         component: BuySell
     },
     {
-        path: '/',
+        path: '/logSign',
         name: 'LogSign',
         component: LogSign
     },
