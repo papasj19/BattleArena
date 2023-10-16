@@ -7,32 +7,24 @@ import GameArena from "../Views/GameArena.vue";
 import LogSign from "../Views/LogSign.vue";
 import NewGameArena from "../Views/NewGameArena.vue";
 import PlayerRankings from "../Views/PlayerRankings.vue";
+import App from "../App.vue";
 
 const routes = [
+
     {
-        path: '/',
+        path: '/profile',
         name: 'Profile',
         component: Profile
     },
     {
-        path: '/',
-        name: 'NewAtt',
-        component: NewAtt
-    },
-    {
-        path: '/',
+        path: '/ArenaManage',
         name: 'ArenaManager',
         component: ArenaManage
     },
     {
-        path: '/',
+        path: '/BuySell',
         name: 'BuySell',
         component: BuySell
-    },
-    {
-        path: '/',
-        name: 'GameArena',
-        component: GameArena
     },
     {
         path: '/',
@@ -40,12 +32,7 @@ const routes = [
         component: LogSign
     },
     {
-        path: '/',
-        name: 'NewGameArena',
-        component: NewGameArena
-    },
-    {
-        path: '/',
+        path: '/PlayerRankings',
         name: 'PlayerRankings',
         component: PlayerRankings
     }

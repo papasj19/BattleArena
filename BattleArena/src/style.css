@@ -14,6 +14,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
+.menuBar{
+  display: flex;
+  place-items: baseline;
+
+}
+
 a {
   font-weight: 500;
   color: #646cff;
