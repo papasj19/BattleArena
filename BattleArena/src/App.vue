@@ -12,6 +12,16 @@ import HelloWorld from './components/HelloWorld.vue'
     </a>
   </div>
   <HelloWorld msg="Vite + Vue" />
+
+
+  <nav>
+    <router-link to="/Profile">Profile</router-link>
+    <router-link to="/BuySell">BuySell</router-link>
+    <router-link to="/ArenaManage">Arena Manager</router-link>
+    <router-link to="/PlayerRankings">PLayerRankings</router-link>
+  </nav>
+
+  <router-view></router-view>
 </template>
 
 <style scoped>
