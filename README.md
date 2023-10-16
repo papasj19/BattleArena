@@ -1,4 +1,4 @@
-# Project 1 - LSManga
+# Project 1 - BattleArena
 
 by Spencer Johnson & Sergi & Yera
 on October 2023
