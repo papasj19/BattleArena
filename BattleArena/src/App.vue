@@ -3,7 +3,7 @@ import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div>
+  <div class="bg-slate-200">
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>
@@ -15,10 +15,10 @@ import HelloWorld from './components/HelloWorld.vue'
 
 
   <nav>
-    <router-link to="/Profile">Profile</router-link>
-    <router-link to="/BuySell">BuySell</router-link>
-    <router-link to="/ArenaManage">Arena Manager</router-link>
-    <router-link to="/PlayerRankings">PLayerRankings</router-link>
+    <router-link class="p-2" to="/Profile">Profile</router-link>
+    <router-link class="p-2" to="/BuySell">Shop</router-link>
+    <router-link class="p-2" to="/ArenaManage">Arena Manager</router-link>
+    <router-link class="p-2" to="/PlayerRankings">Player Rankings</router-link>
   </nav>
 
   <router-view></router-view>
