@@ -35,6 +35,11 @@ const routes = [
         path: '/PlayerRankings',
         name: 'PlayerRankings',
         component: PlayerRankings
+    },
+    {
+        path: '/NewGameArena',
+        name: 'NewGameArena',
+        component: NewGameArena
     }
 ]
 
