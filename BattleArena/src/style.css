@@ -20,6 +20,13 @@
 
 }
 
+
+
+.topTabl{
+  display: flex;
+  flex-direction: row;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
