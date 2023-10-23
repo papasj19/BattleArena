@@ -11,7 +11,8 @@ The following explanation is in conjunction with Web Projects 1 Project 1
 
 ## System requirements
 
-* [WebStorm](https://www.jetbrains.com/webstorm/)
+* [WebStorm](https://www.jetbrains.com/webstorm/) or [Visual Studio Code](https://code.visualstudio.com)
+* This project heavily uses CSS for [tailwind](https://tailwindcss.com)
 * Other Notes:
 	* tbd
 	* tbd
