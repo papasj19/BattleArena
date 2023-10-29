@@ -1,12 +1,15 @@
 <script setup>
+import list from '../components/list.vue';
 
 </script>
 
 <template>
-  <center>
-    <h1>PlayerRankings</h1>
-  </center>
-
+  <list 
+      :props="{ 
+        title: 'Players Rankings', 
+        subtitle: 'Here is the list of all the players and their info.', 
+        columns: ['Player ID', 'Username', 'Date Created', '#Ranking', 'Status'] }"
+    />
 </template>
 
 <style scoped>
