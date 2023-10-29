@@ -1,39 +1,52 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+  
+  const navigateTo = (page) => {
+    router.push(`/${page}`);
+  };
 </script>
 
 <template>
 
-  <nav class="justify-end bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <router-link to="/home" class="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 flex items-center justify-center bg-white py-4 px-4">
+    <img src="/Photos/icon.jpg" class="h-16 mr-3" alt="Logo" />
+    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      BattleArena
+    </span>
+  </router-link>
 
-      <img src="/Photos/icon.jpg" class="h-8 mr-3" alt="Logo" />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BattleArena</span>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
-        <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+  <nav class="fixed inset-x-0 bottom-0 bg-white border-t shadow-lg">
+      <div class="container mx-auto px-4">
+        <ul class="flex justify-around items-center py-4">
           <li>
-            <router-link class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent" aria-current="page" to="/LogSign">Home</router-link>
+            <button class="focus:outline-none" @click="navigateTo('Profile')">
+              Profile
+            </button>
           </li>
           <li>
-            <router-link class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" to="/Profile">Profile</router-link>
+            <button class="focus:outline-none" @click="navigateTo('BuySell')">
+              Shop
+            </button>
           </li>
           <li>
-            <router-link class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" to="/BuySell">Shop</router-link>
+            <button class="focus:outline-none" @click="navigateTo('ArenaManage')">
+              Arena Manager
+            </button>
           </li>
           <li>
-            <router-link class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" to="/ArenaManage">Arena Manager</router-link>
-          </li>
-          <li>
-            <router-link class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" to="/PlayerRankings">Player Rankings</router-link>
+            <button class="focus:outline-none" @click="navigateTo('PlayerRankings')">
+              Player Rankings
+            </button>
           </li>
         </ul>
       </div>
-    </div>
-  </nav>
-  <!--<HelloWorld msg="Vite + Vue" /> -->
-<router-view>
+    </nav>
 
-</router-view>
+  <router-view>
+
+  </router-view>
 
 </template>
 
