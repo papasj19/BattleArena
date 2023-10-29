@@ -40,6 +40,11 @@ const routes = [
         path: '/NewGameArena',
         name: 'NewGameArena',
         component: NewGameArena
+    },
+    {
+        path: '/GameArena',
+        name: 'GameArena',
+        component: GameArena
     }
 ]
 
