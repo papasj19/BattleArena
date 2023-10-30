@@ -16,12 +16,12 @@ const navigateTo = (page) => {
 <template>
 
   <body>
-  <div class="flex flex-col items-center space-x-5 h-full pb-4 bg-white dark:bg-gray-900">
+  <div class="flex flex-col items-center space-x-5 pb-4 bg-white dark:bg-gray-900">
     <!-- laying out page horizontally-->
     <div class="flex flex-row items-center space-x-5 h-full pb-4 bg-white dark:bg-gray-900">
       <img src="/Photos/arena_template.png" class="h-75 mr-3" alt="new arena" />
       <!-- laying out page vertically on right portion-->
-      <div class="flex flex-col items-center space-y-7 h-full pb-4 bg-white dark:bg-gray-900">
+      <div class="flex flex-col items-center space-x-5 space-y-7 h-full pb-4 bg-white dark:bg-gray-900">
         <!-- player 1 layout-->
         <div class="flex flex-col items-center space-y-2 h-full pb-4 bg-white dark:bg-gray-900">
           <img src="/Photos/rick.png" class="h-20 mr-3" alt="new arena" />
@@ -54,8 +54,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  background-position: center;
   width: 100vw;
   height: 100vh;
+  justify-content: center;
 }
 
 </style>

@@ -15,16 +15,14 @@ const navigateTo = (page) => {
 
 <template>
   <body>
-  <div class="flex-col">
-  <div class="flex-row mx-auto justify-around items-center text-gray-600">
-      <div class="flex justify-around items-center w-full pb-4 bg-white dark:bg-gray-900">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-            </svg>
+  <div class="flex justify-center flex-col bg-white dark:bg-gray-900">
+  <div class="flex-row mx-auto flex justify-center items-center text-gray-600">
+      <div class="flex justify-center items-center w-full pb-4 bg-white dark:bg-gray-900">
 
-        <label for="table-search" class="sr-only">Search</label>
         <input type="text" id="table-search" class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for Arena">
-
+        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
 
         <div>
           <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
@@ -56,7 +54,7 @@ const navigateTo = (page) => {
         </div>
           <button class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" @click="navigateTo('NewGameArena')">New Arena</button>
       </div>
-    </div>
+  </div>
 
     <list 
       :props="{ 
@@ -73,10 +71,10 @@ const navigateTo = (page) => {
 body {
   background-image: url("Photos/dojo.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-size: cover;
-  width: 100vw;
+  width: 105vw;
   height: 100vh;
+  justify-content: center;
 }
 
 </style>
