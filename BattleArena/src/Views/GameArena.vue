@@ -52,7 +52,6 @@ const navigateTo = (page) => {
 body {
   background-image: url("Photos/arena_background.jpg");
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   width: 100vw;
