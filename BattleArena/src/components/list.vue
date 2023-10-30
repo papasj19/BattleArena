@@ -14,7 +14,7 @@ const props = defineProps({
   },
   columns: {
     type: Array,
-    default: () => ['Game ID', 'Matrix Size', 'Date Created', 'Number of Players', 'Status']
+    default: ['Game ID', 'Matrix Size', 'Date Created', 'Number of Players', 'Status']
   }
 });
 </script>

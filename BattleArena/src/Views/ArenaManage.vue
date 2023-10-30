@@ -14,8 +14,7 @@ const navigateTo = (page) => {
 </script>
 
 <template>
-  <body>
-  <div class="flex justify-center flex-col bg-white dark:bg-gray-900">
+  <div class="arena-manage-container flex flex-col justify-content">
   <div class="flex-row mx-auto flex justify-center items-center text-gray-600">
       <div class="flex justify-center items-center w-full pb-4 bg-white dark:bg-gray-900">
 
@@ -56,25 +55,23 @@ const navigateTo = (page) => {
       </div>
   </div>
 
-    <list 
-      :props="{ 
-        title: 'Arenas Rankings', 
-        subtitle: 'Here is the list of the Arena\'s and their contents.', 
-        columns: ['Game ID', 'Matrix Size', 'Date Created', 'Number of Players', 'Status'] }"
+    <list
+        title= "Arenas Rankings"
+        subtitle="Here is the list of the Arena\'s and their contents."
+        columns="['Game ID', 'Matrix Size', 'Date Created', 'Number of Players', 'Status']"
     />
 `</div>
-  </body>
 </template>
 
 <style scoped>
 
-body {
+.arena-manage-container{
   background-image: url("Photos/dojo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  width: 105vw;
+  width: 100vw;
   height: 100vh;
-  justify-content: center;
+
 }
 
 </style>

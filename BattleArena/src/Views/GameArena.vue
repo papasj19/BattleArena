@@ -15,7 +15,6 @@ const navigateTo = (page) => {
 
 <template>
 
-  <body>
   <div class="flex flex-col items-center space-x-5 pb-4 bg-white dark:bg-gray-900">
     <!-- laying out page horizontally-->
     <div class="flex flex-row items-center space-x-5 h-full pb-4 bg-white dark:bg-gray-900">
@@ -44,13 +43,11 @@ const navigateTo = (page) => {
   </div>
 
 
-  </body>
 </template>
 
 <style scoped>
 
 body {
-  background-image: url("Photos/arena_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
