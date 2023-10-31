@@ -25,7 +25,7 @@ const navigateTo = (page) => {
             <img src="/Photos/rick.png" class="object-cover h-24 w-24" alt="new arena"/>
             <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                   style="width: 45%"> 45%
+                   style="width: 30%"> 30%
               </div>
             </div>
           </section>
@@ -36,7 +36,7 @@ const navigateTo = (page) => {
             <img src="/Photos/kitty.jpeg" class="object-cover h-24 w-24" alt="new arena"/>
             <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
               <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                   style="width: 45%"> 45%
+                   style="width: 95%"> 95%
               </div>
             </div>
           </section>
