@@ -21,8 +21,8 @@ const navigateTo = (page) => {
       <div class="flex flex-row items-center justify-center p-5 h-full pb-4 bg-none dark:bg-none">
         <img src="/Photos/arena_template.png" class="h-100 mr-3" alt="new arena"/>
 
-        <section class="flex flex-col justify-around bg-white dark:bg-gray-900">
-          <section class="px-2 flex flex-col">
+        <section class="flex flex-col justify-around rounded-lg bg-white dark:bg-gray-900">
+          <section class="p-4 flex flex-col">
             <h2 class="text-center">Pre-Load:</h2>
             <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
                     class="inline-flex items-center m-2 text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"

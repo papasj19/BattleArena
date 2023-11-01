@@ -19,13 +19,13 @@ const navigateTo = (page) => {
       <div class="flex justify-center items-center w-full pb-4 bg-white dark:bg-gray-900">
 
         <input type="text" id="table-search"
-               class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+               class="block m-2 p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                placeholder="Search for Arena">
 
 
         <div>
           <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                  class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                  class="inline-flex m-2 items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                   type="button">
             <svg class="w-3 h-3 text-gray-500 dark:text-gray-400 mr-2.5" aria-hidden="true"
                  xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -67,7 +67,7 @@ const navigateTo = (page) => {
           </div>
         </div>
         <button
-            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            class="focus:outline-none m-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             @click="navigateTo('NewGameArena')">New Arena
         </button>
       </div>
@@ -76,17 +76,13 @@ const navigateTo = (page) => {
     <list
         title="Arenas Rankings"
         subtitle="Here is the list of the Arena\'s and their contents."
-        columns="Game"
+        :columns="['Game ID', 'Matrix Size', 'Date Created', 'Number of Players', 'Status']"
     />
 
   </div>
 </template>
 
-<!--
-        columns="['Game ID', 'Matrix Size', 'Date Created', 'Number of Players', 'Status']" -->
-
 <style scoped>
-
 .arena-manage-container {
   background-image: url("Photos/dojo.jpg");
   background-repeat: no-repeat;

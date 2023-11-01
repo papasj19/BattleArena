@@ -19,8 +19,8 @@ const navigateTo = (page) => {
       <div class="flex flex-row items-center p-5 h-full pb-4 bg-none dark:bg-none">
         <img src="/Photos/arena_template.png" class="h-75 mr-3" alt="new arena"/>
         <!-- laying out page vertically on right portion-->
-        <section class="flex flex-col justify-around h-full bg-white dark:bg-gray-900">
-          <section class="px-2">
+        <section class="flex flex-col justify-around h-full rounded-lg bg-white dark:bg-gray-900">
+          <section class="p-4">
             <h2 class="text-center">Player 1</h2>
             <img src="/Photos/rick.png" class="object-cover h-24 w-24" alt="new arena"/>
             <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
