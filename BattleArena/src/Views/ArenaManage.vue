@@ -84,7 +84,7 @@ const navigateTo = (page) => {
 
 <style scoped>
 .arena-manage-container {
-  background-image: url("Photos/dojo.jpg");
+  background-image: url("/Photos/dojo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;

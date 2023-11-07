@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
 import Profile from '../Views/Profile.vue'
 import ArenaManage from "../Views/ArenaManage.vue";
 import NewAtt from "../Views/NewAtt.vue";
@@ -8,6 +8,9 @@ import LogSign from "../Views/LogSign.vue";
 import NewGameArena from "../Views/NewGameArena.vue";
 import PlayerRankings from "../Views/PlayerRankings.vue";
 import App from "../App.vue";
+import home from "../Views/DefaultStartScreen.vue";
+import DefaultStartScreen from "../Views/DefaultStartScreen.vue";
+import Home from "../Views/Home.vue";
 
 const routes = [
 
@@ -45,6 +48,17 @@ const routes = [
         path: '/GameArena',
         name: 'GameArena',
         component: GameArena
+    },
+    {
+        path: '/',
+        name: 'DefaultStartScreen',
+        component: DefaultStartScreen
+    },
+    {
+        path: '/Home',
+        name: 'Home',
+        component: Home
+
     }
 ]
 

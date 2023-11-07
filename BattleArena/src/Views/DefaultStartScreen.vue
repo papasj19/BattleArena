@@ -1,0 +1,113 @@
+<script setup>
+
+</script>
+
+<template>
+  <title>
+    Welcome to the Program
+  </title>
+
+  <div class="home-container flex flex-col items-center">
+    <table class="guy bg-white dark:bg-gray-900">
+      <colgroup>
+        <col class="column1">
+        <col class="column2">
+        <col class="column3">
+        <col class="column4">
+        <col class="column5">
+        <col class="column6">
+      </colgroup>
+      <thead>
+      <tr>
+        <th>Button</th>
+        <th>Location</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <button class="flex flex-row items-center"><img src="/Photos/icon.jpg" class="h-8" alt="Logo"/>Battle Arena
+          </button>
+        </td>
+        <td>Top Middle of Page</td>
+        <td>Takes the user to the sign in screen</td>
+      </tr>
+      <tr>
+        <td>
+          <button>Profile</button>
+        </td>
+        <td>Bottom Left</td>
+        <td>Takes the user to their profile</td>
+      </tr>
+      <tr>
+        <td>
+          <button>Shop</button>
+        </td>
+        <td>Bottom Middle Left</td>
+        <td>The shop is where the user can can purchase attacks</td>
+      </tr>
+      <tr>
+        <td>
+          <button>Arena Manager</button>
+        </td>
+        <td>Bottom Middle Right</td>
+        <td>The user will see the Arena Rankings</td>
+      </tr>
+      <tr>
+        <td>
+          <button>Player Rankings</button>
+        </td>
+        <td>Bottom Right</td>
+        <td>Shows the User the Rankings of the Players</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</template>
+
+<style scoped>
+.home-container {
+  background-image: url("/Photos/home_pic.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-content: center;
+}
+
+button {
+  border-style: solid;
+  border-color: #888888;
+  border-width: 0.1rem;
+  border-radius: 0.2rem;
+  background-color: cornflowerblue;
+  color: black;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background: azure;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+table.guy {
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+table.guy td {
+  text-align: center;
+  margin: 12px 12px 12px 12px;
+}
+
+</style>
