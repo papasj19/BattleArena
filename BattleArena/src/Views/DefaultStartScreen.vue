@@ -107,6 +107,7 @@ table, th, td {
 }
 
 table.guy {
+  
   margin-left: auto;
   margin-right: auto;
 
