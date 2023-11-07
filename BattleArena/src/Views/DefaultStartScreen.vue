@@ -7,8 +7,14 @@
     Welcome to the Program
   </title>
 
-  <div class="home-container flex flex-col items-center">
+  <div class="default-start-container flex flex-col items-center">
     <table class="guy bg-white dark:bg-gray-900">
+      <caption
+          class="p-5 text-lg font-semibold text-center text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+        Welcome to the Website!
+        <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400"> Below displays where the menu options are
+          located and what purpose they serve.<br> Note: The buttons in the table are not clickable</p>
+      </caption>
       <colgroup>
         <col class="column1">
         <col class="column2">
@@ -27,7 +33,8 @@
       <tbody>
       <tr>
         <td>
-          <button class="flex flex-row items-center"><img src="/Photos/icon.jpg" class="h-8" alt="Logo"/>Battle Arena
+          <button class="flex flex-row items-center"><img src="/Photos/icon.jpg" class="h-6 m-1" alt="Logo"/>Battle
+            Arena
           </button>
         </td>
         <td>Top Middle of Page</td>
@@ -52,7 +59,7 @@
           <button>Arena Manager</button>
         </td>
         <td>Bottom Middle Right</td>
-        <td>The user will see the Arena Rankings</td>
+        <td>The user will see the Arena Rankings/Arena Creation Menu</td>
       </tr>
       <tr>
         <td>
@@ -69,7 +76,7 @@
 </template>
 
 <style scoped>
-.home-container {
+.default-start-container {
   background-image: url("/Photos/home_pic.jpg");
   background-repeat: no-repeat;
   background-size: cover;

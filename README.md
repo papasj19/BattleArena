@@ -12,6 +12,7 @@ The following explanation is in conjunction with Web Projects 1 Project 1 Phase 
 ## System requirements
 
 * [WebStorm](https://www.jetbrains.com/webstorm/) or [Visual Studio Code](https://code.visualstudio.com)
+* The project relies on [Vue](https://vuejs.org)
 * This project heavily uses CSS for [tailwind](https://tailwindcss.com)
 * Other Notes:
 	* tbd
