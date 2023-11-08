@@ -4,9 +4,11 @@
 
 <template>
 
+  <!--used to set the background and place contents of page in center -->
   <div class="home-container flex flex-col items-center">
-
+    <!--setting color of the table -->
     <table class="bg-white dark:bg-gray-900">
+      <!--setting the header of the table -->
       <caption
           class="p-5 text-lg font-semibold text-center text-gray-900 bg-white dark:text-white dark:bg-gray-800">
         Please Sign Up or use your Login!
@@ -16,6 +18,7 @@
           with all of your relevant battle information as well as participate in the arenas and secure your own place
           among the player leaderboard! <br> <br> And for our returning veterans, nice to see you again</p>
       </caption>
+      <!--preparing table size -->
       <colgroup>
         <col class="column1">
         <col class="column2">
