@@ -80,6 +80,12 @@
 
 </template>
 
+
+<!--Here i format the container of the ppage for the background and the content aligned to hte middle
+  also i specifically format the buttons on this page to have the best contrast for the background
+  this is along with the formatting of the table
+-->
+
 <style scoped>
 
 .default-start-container {

@@ -85,6 +85,8 @@ const navigateTo = (page) => {
   </div>
 </template>
 
+
+<!--setting up background and formating page-->
 <style scoped>
 .arena-manage-container {
   background-image: url("/Photos/dojo.jpg");
