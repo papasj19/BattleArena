@@ -1,5 +1,5 @@
 <template>
-  <main class="flex justify-center items-center flex-col sm:flex-row h-screen" style="background-image: url('Photos/cozy-room.png'); background-size: cover;">
+  <main class="flex justify-center items-center flex-col sm:flex-row h-screen" style="background-image: url('src/assets/photos/cozy-room.png'); background-size: cover;">
     <div class="p-4">
       <button @click="showSignupModal" style="width:auto;">Sign Up</button>
 

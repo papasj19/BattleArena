@@ -1,16 +1,17 @@
 <template>
 
-  <main class="flex justify-center items-center flex-col sm:flex-row h-screen" style="background-image: url('Photos/tatami-room.jpg'); background-size: cover;">
+  <main class="flex justify-center items-center flex-col sm:flex-row h-screen" 
+  style="background-image: url('src/assets/photos/tatami-room.jpg'); background-size: cover;"
+  >
       <div class="p-4">
-        <div class="text-center">
-          <img class="w-20 h-20 rounded" src="/Photos/SJ_cat.jpeg" alt="Large avatar">
-          <div class="text-left font-medium dark:text-white">
-            <div>Garfield(Name)</div>
-          </div>
-          <p class="text-left text-white-500 light:text-white-400">
-            Based cat. Basic INFO
-          </p>
+        <div class="flex items-center space-x-4 bg-white p-2 rounded-lg">
+          <img class="w-20 h-20 rounded" src="src/assets/photos/SJ_cat.jpeg" alt="Large avatar">
+          <div class="text-left font-medium text-black">
+          <div>Garfield (Name)</div>
+          <p class="text-white-500 light:text-white-400">Based cat. Basic INFO</p>
         </div>
+      </div>
+
   
         <div class="p-4 text-left">
           <div class="profile screen">

@@ -30,7 +30,7 @@ const routes = [
         component: BuySell
     },
     {
-        path: '/logSign',
+        path: '/',
         name: 'LogSign',
         component: LogSign
     },
@@ -48,7 +48,7 @@ const routes = [
         path: '/GameArena',
         name: 'GameArena',
         component: GameArena
-    },
+    }/*,
     {
         path: '/',
         name: 'DefaultStartScreen',
@@ -59,7 +59,7 @@ const routes = [
         name: 'Home',
         component: Home
 
-    }
+    }*/
 ]
 
 const router = createRouter({

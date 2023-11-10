@@ -35,7 +35,7 @@
       <tr>
         <!--Top of Page Button -->
         <td>
-          <button class="flex flex-row items-center"><img src="/Photos/icon.jpg" class="h-6 m-1" alt="Logo"/>Battle
+          <button class="flex flex-row items-center"><img src="src/assets/photos/icon.jpg" class="h-6 m-1" alt="Logo"/>Battle
             Arena
           </button>
         </td>
@@ -89,7 +89,7 @@
 <style scoped>
 
 .default-start-container {
-  background-image: url("/Photos/home_pic.jpg");
+  background-image: url("src/assets/photos/home_pic.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;

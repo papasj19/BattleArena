@@ -54,7 +54,7 @@
 
 
 .home-container {
-  background-image: url("/Photos/home_screen.jpg");
+  background-image: url("src/assets/photos/home_screen.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
