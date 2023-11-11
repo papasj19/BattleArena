@@ -12,36 +12,44 @@ const navigateTo = (page) => {
 
 
 <template>
+  <!-- formatting the background -->
   <div class="game-arena-container flex flex-col justify-center items-center min-h-screen">
+    <!-- aligning page content vertically -->
     <div class="flex flex-col sm:flex-row justify-center items-center w-fit">
       <!-- Image container -->
-      <div class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
+      <section class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
         <img src="src/assets/photos/arena_template.png" class="h-auto sm:h-75 mx-auto" alt="new arena"/>
-      </div>
-      <!-- Player info sections -->     
-      <div class="flex flex-row sm:flex-col justify-around items-center h-full rounded-lg bg-white dark:bg-gray-900 m-2 w-screen sm:w-fit">        
+      </section>
+      <!-- Player info sections -->
+      <section
+          class="flex flex-row sm:flex-col justify-around items-center h-full rounded-lg bg-white dark:bg-gray-900 m-2 w-screen sm:w-fit">
         <!-- Player 1 Section -->
         <section class="p-2 flex-1">
           <h2 class="text-center">Player 1</h2>
           <img src="src/assets/photos/rick.png" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto" alt="Player 1"/>
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
-            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 30%"> 30%</div>
+            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                 style="width: 30%"> 30%
+            </div>
           </div>
         </section>
         <!-- Player 2 Section -->
         <section class="px-2 flex-1">
           <h2 class="text-center">Player 2</h2>
-          <img src="src/assets/photos/kitty.jpeg" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto" alt="Player 2"/>
+          <img src="src/assets/photos/kitty.jpeg" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto"
+               alt="Player 2"/>
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
-            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 95%"> 95%</div>
+            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
+                 style="width: 95%"> 95%
+            </div>
           </div>
         </section>
-      </div>
+      </section>
     </div>
     <!-- End Game Button -->
     <button
-      class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-      @click="navigateTo('ArenaManage')">End Game
+        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+        @click="navigateTo('ArenaManage')">End Game
     </button>
   </div>
 </template>
@@ -58,6 +66,8 @@ const navigateTo = (page) => {
   background-image: url("src/assets/photos/arena_background.jpg");
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
   width: 100vw;
   height: 100vh;
   justify-content: center;
