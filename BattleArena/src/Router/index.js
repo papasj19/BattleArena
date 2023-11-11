@@ -48,7 +48,12 @@ const routes = [
         path: '/GameArena',
         name: 'GameArena',
         component: GameArena
-    }/*,
+    },
+    {
+        path: '/NewAtt',
+        name: 'NewAtt',
+        component: NewAtt
+    }    /*,
     {
         path: '/',
         name: 'DefaultStartScreen',

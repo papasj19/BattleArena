@@ -18,6 +18,7 @@ const navigateTo = (page) => {
     </span>
   </router-link>
 
+
   <!-- Bottom menu -->
 <nav class="fixed inset-x-0 bottom-0 bg-transparent">
   <div class="container mx-auto px-4">
@@ -46,11 +47,9 @@ const navigateTo = (page) => {
   </div>
 </nav>
 
+<router-view>
 
-
-  <router-view>
-
-  </router-view>
+</router-view>
 
 </template>
 
