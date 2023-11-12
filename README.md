@@ -1,6 +1,6 @@
 # Project 1 - BattleArena
 
-by Spencer Johnson & Sergi Tarrenchs & Yera
+by Spencer Johnson & Sergi Tarrenchs & Yerassyl Omirserik
 on October 2023
 
 You can find the Figma wireframes on the following link -> https://www.figma.com/file/GUHz7Ltz5E54Wiv7NDuIaA/WEBI_FinalProject?type=design&node-id=0%3A1&mode=design&t=pq86pO645TOQHCQs-1
