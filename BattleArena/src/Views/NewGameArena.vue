@@ -7,6 +7,31 @@ const router = useRouter();
 const navigateTo = (page) => {
   router.push(`/${page}`);
 };
+</script>
+
+<script>
+
+import {useRouter} from 'vue-router';
+
+const router = useRouter();
+
+const navigateTo = (page) => {
+  router.push(`/${page}`);
+};
+
+export default {
+  data() {
+    return {
+      textx: "0",
+      texty: "0"
+    }
+  },
+  methods: {
+    modifyModel() {
+      this.text = "Button clicked"
+    }
+  }
+}
 
 </script>
 
@@ -25,8 +50,23 @@ const navigateTo = (page) => {
         <section class="p-4 flex flex-col">
           <!-- centering the title of options section, giving the user options to pre load their arena -->
           <h2 class="text-center">Pre-Load:</h2>
+
+          <p>Arena Size: {{ textx }} x {{ texty }}</p>
+          <form>
+            <label class="sizex" for="XSize">Size Matrix (x):</label>
+            <input class="inputBox" id="XSize" v-model="textx">
+
+
+          </form>
+          <form>
+            <label class="sizey" for="YSize">Size Matrix (y):</label>
+            <input class="inputBox" id="YSize" v-model="texty">
+
+
+          </form>
           <!-- Size of arena option -->
-          <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
+
+          <button id="dropdownHelperRadioButton" data-dropdown-toggle="dropdownHelperRadio"
                   class="inline-flex items-center m-2 text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                   type="button">
             <svg class="w-3 h-3 text-gray-500 dark:text-gray-400 mr-2.5" aria-hidden="true"
@@ -41,6 +81,60 @@ const navigateTo = (page) => {
                     d="m1 1 4 4 4-4"/>
             </svg>
           </button>
+          <!-- Dropdown menu -->
+          <div id="dropdownHelperRadio"
+               class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-60 dark:bg-gray-700 dark:divide-gray-600"
+               data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="top"
+               style="position: absolute; inset: auto auto 0px 0px; margin: 0px; transform: translate3d(522.5px, 6119.5px, 0px);">
+            <ul class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
+                aria-labelledby="dropdownHelperRadioButton">
+              <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <div class="flex items-center h-5">
+                    <input id="helper-radio-4" name="helper-radio" type="radio" value=""
+                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                  </div>
+                  <div class="ms-2 text-sm">
+                    <label for="helper-radio-4" class="font-medium text-gray-900 dark:text-gray-300">
+                      <div>Individual</div>
+                      <p id="helper-radio-text-4" class="text-xs font-normal text-gray-500 dark:text-gray-300">Some
+                        helpful instruction goes over here.</p>
+                    </label>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <div class="flex items-center h-5">
+                    <input id="helper-radio-5" name="helper-radio" type="radio" value=""
+                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                  </div>
+                  <div class="ms-2 text-sm">
+                    <label for="helper-radio-5" class="font-medium text-gray-900 dark:text-gray-300">
+                      <div>Company</div>
+                      <p id="helper-radio-text-5" class="text-xs font-normal text-gray-500 dark:text-gray-300">Some
+                        helpful instruction goes over here.</p>
+                    </label>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="flex p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600">
+                  <div class="flex items-center h-5">
+                    <input id="helper-radio-6" name="helper-radio" type="radio" value=""
+                           class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                  </div>
+                  <div class="ms-2 text-sm">
+                    <label for="helper-radio-6" class="font-medium text-gray-900 dark:text-gray-300">
+                      <div>Non profit</div>
+                      <p id="helper-radio-text-6" class="text-xs font-normal text-gray-500 dark:text-gray-300">Some
+                        helpful instruction goes over here.</p>
+                    </label>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
           <!-- Players option-->
           <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
                   class="inline-flex items-center m-2 text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
@@ -138,4 +232,23 @@ const navigateTo = (page) => {
   justify-content: center;
   align-content: center;
 }
+
+.inputBox {
+  width: 15%;
+  margin: 3px;
+}
+
+p {
+  width: auto;
+}
+
+.sizex {
+  width: 50%;
+}
+
+.sizey {
+  width: 50%;
+}
+
+
 </style>
