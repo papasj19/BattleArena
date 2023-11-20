@@ -9,6 +9,8 @@ const navigateTo = (page) => {
   router.push(`/${page}`);
 };
 
+
+
 </script>
 
 <template>
