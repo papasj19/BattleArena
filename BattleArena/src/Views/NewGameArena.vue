@@ -37,9 +37,9 @@ export default {
     },
     addOneX() {
       let newInt;
-      newInt = parseInt(self.textx) + 1;
-      newInt = toString();
-      self.textx = newInt;
+      newInt = parseInt(this.textx) + 1;
+      newInt = newInt.toString();
+      this.textx = newInt;
     }
   }
 }
@@ -66,7 +66,7 @@ export default {
           <form>
             <label class="sizex" for="XSize">Size Matrix (x):</label>
             <input class="inputBox" id="XSize" v-model="textx">
-            <button class="v_button" v-on:click="addOneX()">Add one</button>
+            <button class="v_button" v-on:click.prevent="addOneX()">Add one</button>
             <ParamComp v-bind:aParameter=textx></ParamComp>
 
 
