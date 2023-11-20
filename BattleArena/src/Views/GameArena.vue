@@ -1,3 +1,7 @@
+<script>
+
+</script>
+
 <script setup>
 
 import {useRouter} from 'vue-router';
