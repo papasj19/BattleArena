@@ -1,6 +1,7 @@
 <script setup>
 
 import {useRouter} from 'vue-router';
+import ParamComp from "../components/ParamComp.vue";
 
 const router = useRouter();
 
@@ -11,6 +12,8 @@ const navigateTo = (page) => {
 
 <script>
 
+import ParamComp from "../components/ParamComp.vue";
+
 import {useRouter} from 'vue-router';
 
 const router = useRouter();
@@ -20,6 +23,7 @@ const navigateTo = (page) => {
 };
 
 export default {
+  components: {ParamComp},
   data() {
     return {
       textx: "0",
@@ -29,6 +33,12 @@ export default {
   methods: {
     modifyModel() {
       this.text = "Button clicked"
+    },
+    addOneX() {
+      let newInt;
+      newInt = parseInt(self.textx) + 1;
+      newInt = toString();
+      self.textx = newInt;
     }
   }
 }
@@ -55,6 +65,8 @@ export default {
           <form>
             <label class="sizex" for="XSize">Size Matrix (x):</label>
             <input class="inputBox" id="XSize" v-model="textx">
+            <button class="v_button" v-on:click="addOneX()">Add one</button>
+            <ParamComp v-bind:aParameter=textx></ParamComp>
 
 
           </form>
@@ -220,6 +232,16 @@ export default {
 <!-- Attack button -->
 
 <style scoped>
+
+.v_button {
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: deepskyblue;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  width: 25%;
+}
 
 .new-game-arena-container {
   background-image: url("src/assets/photos/locker_room.jpg");
