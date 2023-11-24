@@ -13,6 +13,44 @@ const navigateTo = (page) => {
 
 </script>
 
+<script>
+export default {
+  data() {
+    return {
+      gameID: "",
+      size: 0,
+      HP_max: 0,
+    }
+  },
+  methods: {
+    newArenaAPICall() {
+      const createNewArenaRequest = {gameID: this.gameID, size: this.size, HP_max: this.HP_max}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(createNewArenaRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("Arena Entered");
+          this.response = "Arena Entered!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    }
+  }
+}
+
+
+</script>
+
 <template>
   <!--setting up background and formating page-->
   <div class="arena-manage-container flex flex-col justify-content">
@@ -71,7 +109,7 @@ const navigateTo = (page) => {
           </div>
           <button
               class="focus:outline-none m-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full sm:w-auto"
-              @click="navigateTo('NewGameArena')">New Arena
+              v-on:click="newArenaAPICall()" @click="navigateTo('NewGameArena')">New Arena
           </button>
         </div>
 
