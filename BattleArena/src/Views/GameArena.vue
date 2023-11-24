@@ -10,6 +10,90 @@ const navigateTo = (page) => {
 
 </script>
 
+<script>
+
+export default {
+  data() {
+    return {
+      movement: "",
+      playerOrientation: "",
+      gameID: "",
+    }
+  },
+  methods: {
+    playerMovementAPICall() {
+      const playerMovementRequest = {movement: this.movement}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(playerMovementRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("PLayer moved");
+          this.response = "PLayer moved!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
+    viewGameLogAPICall() {
+      const viewGameLogRequest = {gameID: this.gameID}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(viewGameLogRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("INSERT GAME LOG HERE OR SOMETHING");
+          this.response = "SHOW GAME LOG";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
+    changePlayerOrientationAPICall() {
+      const changePlayerOrientationRequest = {playerOrientation: this.playerOrientation}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(changePlayerOrientationRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("changed orientation");
+          this.response = "changed orientation!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    }
+  }
+
+}
+
+
+</script>
+
 
 <template>
   <!-- formatting the background -->
@@ -44,6 +128,12 @@ const navigateTo = (page) => {
             </div>
           </div>
         </section>
+        <!-- ViewLogs Button -->
+        <button
+            class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            v-on:click="viewGameLogAPICall">Game Log
+        </button>
+
       </section>
     </div>
     <!-- End Game Button -->
