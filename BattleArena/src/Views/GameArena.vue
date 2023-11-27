@@ -108,6 +108,28 @@ export default {
       }).catch((error) => {
         this.response = "No connection with API";
       });
+    },
+    gameAttackAPICall() {
+      const gameAttackRequest = {attack_ID: this.playerOrientation}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(gameAttackRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("Attacked");
+          this.response = "Attacked!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
     }
   }
 
