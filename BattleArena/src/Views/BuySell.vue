@@ -9,8 +9,64 @@ const navigateTo = (page) => {
   router.push(`/${page}`);
 };
 
+</script>
 
+<script>
+export default {
+  data() {
+    return {
+      attackID: "",
+      positions: "",
+      image: "",
+    }
+  },
+  methods: {
+    buyAttackAPICall() {
+      const buyAttackRequest = {attack_ID: this.attackID}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(buyAttackRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("Attack bought");
+          this.response = "Attack bought!";
+          return response;
+        }
 
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
+    sellAttackAPICall() {
+      const sellAttackRequest = {attack_ID: this.attackID}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(sellAttackRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("Attack sold");
+          this.response = "Attack sold!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    }
+  }
+}
 </script>
 
 <template>
