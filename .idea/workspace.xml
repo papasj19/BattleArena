@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="77c6599a-5a34-4741-85d9-1853cba57f41" name="Changes" comment="Arena Ranking Screen is basically done, I just need to finish the filter">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" afterDir="false" />
-    </list>
+    <list default="true" id="77c6599a-5a34-4741-85d9-1853cba57f41" name="Changes" comment="Arena Ranking Screen is basically done, I just need to finish the filter" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -96,7 +93,7 @@
       <workItem from="1699889499460" duration="5194000" />
       <workItem from="1700473036531" duration="3724000" />
       <workItem from="1700490970956" duration="8836000" />
-      <workItem from="1700824286814" duration="2512000" />
+      <workItem from="1700824286814" duration="3123000" />
     </task>
     <task id="LOCAL-00001" summary="Arena Ranking Screen is basically done, I just need to finish the filter">
       <option name="closed" value="true" />

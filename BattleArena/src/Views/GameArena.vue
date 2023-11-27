@@ -43,6 +43,28 @@ export default {
         this.response = "No connection with API";
       });
     },
+    leaveGameAPICall() {
+      const leaveGameRequest = {gameID: this.gameID}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(leaveGameRequest)
+      }).then((response) => {
+        if (response.ok) {
+          alert("You have left the game");
+          this.response = "You have left the game!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
     viewGameLogAPICall() {
       const viewGameLogRequest = {gameID: this.gameID}
       fetch("https://balandrau.salle.url.edu/i3/players", {
@@ -139,7 +161,7 @@ export default {
     <!-- End Game Button -->
     <button
         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-        @click="navigateTo('ArenaManage')">End Game
+        v-on:click="leaveGameAPICall" @click="navigateTo('ArenaManage')">End Game
     </button>
   </div>
 </template>
