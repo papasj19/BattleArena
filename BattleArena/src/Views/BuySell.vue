@@ -23,7 +23,8 @@ export default {
   methods: {
     buyAttackAPICall() {
       const buyAttackRequest = {attack_ID: this.attackID}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+
+      fetch("https://balandrau.salle.url.edu/i3/shop/attacks", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(buyAttackRequest)
@@ -45,7 +46,7 @@ export default {
     },
     sellAttackAPICall() {
       const sellAttackRequest = {attack_ID: this.attackID}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+      fetch("https://balandrau.salle.url.edu/i3/shop/attacks", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(sellAttackRequest)

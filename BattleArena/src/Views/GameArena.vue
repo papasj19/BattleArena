@@ -23,7 +23,7 @@ export default {
   methods: {
     playerMovementAPICall() {
       const playerMovementRequest = {movement: this.movement}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+      fetch("https://balandrau.salle.url.edu/i3/arenas/move", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(playerMovementRequest)
@@ -45,7 +45,7 @@ export default {
     },
     leaveGameAPICall() {
       const leaveGameRequest = {gameID: this.gameID}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+      fetch("https://balandrau.salle.url.edu/i3/arena/{ID}play", {
         method: 'DELETE',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(leaveGameRequest)
@@ -67,7 +67,7 @@ export default {
     },
     viewGameLogAPICall() {
       const viewGameLogRequest = {gameID: this.gameID}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+      fetch("https://balandrau.salle.url.edu/i3/arenas/{gameID}/logs", {
         method: 'GET',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(viewGameLogRequest)
@@ -89,7 +89,7 @@ export default {
     },
     changePlayerOrientationAPICall() {
       const changePlayerOrientationRequest = {playerOrientation: this.playerOrientation}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+      fetch("https://balandrau.salle.url.edu/i3/arenas/direction", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(changePlayerOrientationRequest)
@@ -111,7 +111,7 @@ export default {
     },
     gameAttackAPICall() {
       const gameAttackRequest = {attack_ID: this.playerOrientation}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+      fetch("https://balandrau.salle.url.edu/i3/arenas/attack/{attackID}", {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(gameAttackRequest)
@@ -146,7 +146,36 @@ export default {
     <div class="flex flex-col sm:flex-row justify-center items-center w-fit">
       <!-- Image container -->
       <section class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
-        <img src="src/assets/photos/arena_template.png" class="h-auto sm:h-75 mx-auto" alt="new arena"/>
+        <div class="parent">
+          <div class="parent">
+            <div class="div1">1</div>
+            <div class="div2">2</div>
+            <div class="div3">3</div>
+            <div class="div4">4</div>
+            <div class="div5">5</div>
+            <div class="div6">6</div>
+            <div class="div7">7</div>
+            <div class="div8">8</div>
+            <div class="div9">9</div>
+            <div class="div10">10</div>
+            <div class="div11">11</div>
+            <div class="div12">12</div>
+            <div class="div13">13</div>
+            <div class="div14">14</div>
+            <div class="div15">15</div>
+            <div class="div16">16</div>
+            <div class="div17">17</div>
+            <div class="div18">18</div>
+            <div class="div19">19</div>
+            <div class="div20">20</div>
+            <div class="div21">21</div>
+            <div class="div22">22</div>
+            <div class="div23">23</div>
+            <div class="div24">24</div>
+            <div class="div25">25</div>
+          </div>
+
+        </div>
       </section>
       <!-- Player info sections -->
       <section
@@ -206,6 +235,140 @@ export default {
   height: 100vh;
   justify-content: center;
   align-content: center;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+  background-color: #1a1a1a;
+
+}
+
+.div2 {
+  grid-area: 1 / 2 / 2 / 3;
+  background-color: #1a1a1a;
+}
+
+.div3 {
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: #1a1a1a;
+}
+
+.div4 {
+  grid-area: 1 / 4 / 2 / 5;
+  background-color: #1a1a1a;
+}
+
+.div5 {
+  grid-area: 1 / 5 / 2 / 6;
+  background-color: #1a1a1a;
+}
+
+.div6 {
+  grid-area: 2 / 2 / 3 / 3;
+  background-color: #1a1a1a;
+}
+
+.div7 {
+  grid-area: 2 / 1 / 3 / 2;
+  background-color: #1a1a1a;
+}
+
+.div8 {
+  grid-area: 2 / 3 / 3 / 4;
+  background-color: #1a1a1a;
+}
+
+.div9 {
+  grid-area: 2 / 4 / 3 / 5;
+  background-color: #1a1a1a;
+}
+
+.div10 {
+  grid-area: 2 / 5 / 3 / 6;
+  background-color: #1a1a1a;
+}
+
+.div11 {
+  grid-area: 3 / 1 / 4 / 2;
+  background-color: #1a1a1a;
+}
+
+.div12 {
+  grid-area: 3 / 2 / 4 / 3;
+  background-color: #1a1a1a;
+}
+
+.div13 {
+  grid-area: 3 / 3 / 4 / 4;
+  background-color: #1a1a1a;
+}
+
+.div14 {
+  grid-area: 3 / 4 / 4 / 5;
+  background-color: #1a1a1a;
+}
+
+.div15 {
+  grid-area: 3 / 5 / 4 / 6;
+  background-color: #1a1a1a;
+}
+
+.div16 {
+  grid-area: 4 / 1 / 5 / 2;
+  background-color: #1a1a1a;
+}
+
+.div17 {
+  grid-area: 4 / 2 / 5 / 3;
+  background-color: #1a1a1a;
+}
+
+.div18 {
+  grid-area: 4 / 3 / 5 / 4;
+  background-color: #1a1a1a;
+}
+
+.div19 {
+  grid-area: 4 / 4 / 5 / 5;
+  background-color: #1a1a1a;
+}
+
+.div20 {
+  grid-area: 4 / 5 / 5 / 6;
+  background-color: #1a1a1a;
+}
+
+.div21 {
+  grid-area: 5 / 1 / 6 / 2;
+  background-color: #1a1a1a;
+}
+
+.div22 {
+  grid-area: 5 / 2 / 6 / 3;
+  background-color: #1a1a1a;
+}
+
+.div23 {
+  grid-area: 5 / 3 / 6 / 4;
+  background-color: #1a1a1a;
+}
+
+.div24 {
+  grid-area: 5 / 4 / 6 / 5;
+  background-color: #1a1a1a;
+}
+
+.div25 {
+  grid-area: 5 / 5 / 6 / 6;
+  background-color: #1a1a1a;
 }
 
 </style>

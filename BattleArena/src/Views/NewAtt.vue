@@ -23,9 +23,9 @@ export default {
   methods: {
     newAttackAPICall() {
       const createAttackRequest = {attack_ID: this.attackID, position: this.positions, img: this.image}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
+      fetch("https://balandrau.salle.url.edu/i3/shop/attacks", {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(createAttackRequest)
       }).then((response) => {
         if (response.ok) {
@@ -93,28 +93,28 @@ export default {
 <style scoped>
 
 
-form{
+form {
   display: flex;
   flex-direction: column;
 }
 
-input{
+input {
   margin: 4px;
 }
 
-.item{
+.item {
 
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.inputBar{
+.inputBar {
   width: 60%;
 }
 
 
-.inputBar2{
+.inputBar2 {
   width: 49%;
 }
 
