@@ -18,6 +18,7 @@ export default {
       movement: "",
       playerOrientation: "",
       gameID: "",
+      mode: ""
     }
   },
   methods: {
@@ -130,7 +131,30 @@ export default {
       }).catch((error) => {
         this.response = "No connection with API";
       });
+    },
+    touchedMoveButton() {
+      this.mode = "move";
+    },
+    touchedAttackButton() {
+      this.mode = "attack";
+    },
+    touchedOrientationButton() {
+      this.mode = "orientation";
+    },
+    cellClicked() {
+      if (this.mode === "move") {
+
+      } else {
+        if (this.mode === "attack") {
+
+        } else {
+          if (this.mode === "orientation") {
+
+          }
+        }
+      }
     }
+
   }
 
 }
@@ -144,39 +168,68 @@ export default {
   <div class="game-arena-container flex flex-col justify-center items-center min-h-screen">
     <!-- aligning page content vertically -->
     <div class="flex flex-col sm:flex-row justify-center items-center w-fit">
+
+
+      <section class="flex flex-col">
+        <button
+            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            v-on:click="touchedAttackButton">Attack
+        </button>
+        <button
+            class="focus:outline-none text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
+            v-on:click="touchedMoveButton">Move
+        </button>
+        <button
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            v-on:click="touchedOrientationButton">Direction
+        </button>
+      </section>
+
       <!-- Image container -->
       <section class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
-        <div class="parent">
-          <div class="parent">
-            <div class="div1">1</div>
-            <div class="div2">2</div>
-            <div class="div3">3</div>
-            <div class="div4">4</div>
-            <div class="div5">5</div>
-            <div class="div6">6</div>
-            <div class="div7">7</div>
-            <div class="div8">8</div>
-            <div class="div9">9</div>
-            <div class="div10">10</div>
-            <div class="div11">11</div>
-            <div class="div12">12</div>
-            <div class="div13">13</div>
-            <div class="div14">14</div>
-            <div class="div15">15</div>
-            <div class="div16">16</div>
-            <div class="div17">17</div>
-            <div class="div18">18</div>
-            <div class="div19">19</div>
-            <div class="div20">20</div>
-            <div class="div21">21</div>
-            <div class="div22">22</div>
-            <div class="div23">23</div>
-            <div class="div24">24</div>
-            <div class="div25">25</div>
-          </div>
 
+        <div class="parent">
+          <div class="div1">1</div>
+          <div class="div2">2</div>
+          <div class="div3">3</div>
+          <div class="div4">4</div>
+          <div class="div5">5</div>
+          <div class="div6">7</div>
+          <div class="div7">6</div>
+          <div class="div8">8</div>
+          <div class="div9">9</div>
+          <div class="div10">10</div>
+          <div class="div11">11</div>
+          <div class="div12">12</div>
+          <div class="div13">13</div>
+          <div class="div14">14</div>
+          <div class="div15">15</div>
+          <div class="div16">16</div>
+          <div class="div17">17</div>
+          <div class="div18">18</div>
+          <div class="div19">19</div>
+          <div class="div20">20</div>
+          <div class="div21">21</div>
+          <div class="div22">22</div>
+          <div class="div23">23</div>
+          <div class="div24">24</div>
+          <div class="div25">25</div>
+          <div class="div26">26</div>
+          <div class="div27">27</div>
+          <div class="div28">28</div>
+          <div class="div29">29</div>
+          <div class="div30">30</div>
+          <div class="div37">31</div>
+          <div class="div32">32</div>
+          <div class="div33">33</div>
+          <div class="div34">34</div>
+          <div class="div35">35</div>
+          <div class="div36">36</div>
         </div>
+
+
       </section>
+
       <!-- Player info sections -->
       <section
           class="flex flex-row sm:flex-col justify-around items-center h-full rounded-lg bg-white dark:bg-gray-900 m-2 w-screen sm:w-fit">
@@ -239,8 +292,8 @@ export default {
 
 .parent {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px;
   grid-column-gap: 2px;
   grid-row-gap: 2px;
 }
@@ -248,7 +301,10 @@ export default {
 .div1 {
   grid-area: 1 / 1 / 2 / 2;
   background-color: #1a1a1a;
+}
 
+.div1:hover {
+  background-color: blueviolet;
 }
 
 .div2 {
@@ -308,7 +364,7 @@ export default {
 
 .div13 {
   grid-area: 3 / 3 / 4 / 4;
-  background-color: #1a1a1a;
+  background-color: aquamarine;
 }
 
 .div14 {
@@ -370,5 +426,224 @@ export default {
   grid-area: 5 / 5 / 6 / 6;
   background-color: #1a1a1a;
 }
+
+.div26 {
+  grid-area: 6 / 1 / 7 / 2;
+  background-color: #1a1a1a;
+}
+
+.div27 {
+  grid-area: 6 / 2 / 7 / 3;
+  background-color: #1a1a1a;
+}
+
+.div28 {
+  grid-area: 6 / 3 / 7 / 4;
+  background-color: #1a1a1a;
+}
+
+.div29 {
+  grid-area: 6 / 4 / 7 / 5;
+  background-color: #1a1a1a;
+}
+
+.div30 {
+  grid-area: 6 / 5 / 7 / 6;
+  background-color: #1a1a1a;
+}
+
+.div31 {
+  grid-area: 6 / 6 / 7 / 7;
+  background-color: #1a1a1a;
+}
+
+
+.div32 {
+  grid-area: 6 / 6 / 7 / 7;
+  background-color: #1a1a1a;
+}
+
+.div33 {
+  grid-area: 5 / 6 / 6 / 7;
+  background-color: #1a1a1a;
+}
+
+.div34 {
+  grid-area: 4 / 6 / 5 / 7;
+  background-color: #1a1a1a;
+}
+
+.div35 {
+  grid-area: 3 / 6 / 4 / 7;
+  background-color: #1a1a1a;
+}
+
+.div36 {
+  grid-area: 2 / 6 / 3 / 7;
+  background-color: #1a1a1a;
+}
+
+.div37 {
+  grid-area: 1 / 6 / 2 / 7;
+  background-color: #1a1a1a;
+
+}
+
+.div1:hover {
+
+}
+
+.div2:hover {
+  background-color: blueviolet;
+}
+
+.div3:hover {
+  background-color: blueviolet;
+}
+
+.div4:hover {
+  background-color: blueviolet;
+}
+
+.div5:hover {
+  background-color: blueviolet;
+}
+
+.div6:hover {
+  background-color: blueviolet;
+}
+
+.div7:hover {
+  background-color: blueviolet;
+}
+
+.div8:hover {
+  background-color: blueviolet;
+}
+
+.div9:hover {
+  background-color: blueviolet;
+}
+
+.div10:hover {
+  background-color: blueviolet;
+}
+
+.div11:hover {
+  background-color: blueviolet;
+}
+
+.div12:hover {
+  background-color: blueviolet;
+}
+
+.div13:hover {
+  background-color: blueviolet;
+}
+
+.div14:hover {
+  background-color: blueviolet;
+}
+
+.div15:hover {
+  background-color: blueviolet;
+}
+
+.div16:hover {
+  background-color: blueviolet;
+}
+
+.div17:hover {
+  background-color: blueviolet;
+}
+
+.div18:hover {
+  background-color: blueviolet;
+}
+
+.div19:hover {
+  background-color: blueviolet;
+}
+
+.div20:hover {
+  background-color: blueviolet;
+}
+
+.div21:hover {
+  background-color: blueviolet;
+}
+
+.div22:hover {
+  background-color: blueviolet;
+}
+
+.div23:hover {
+  background-color: blueviolet;
+}
+
+.div24:hover {
+  background-color: blueviolet;
+}
+
+.div25:hover {
+  background-color: blueviolet;
+}
+
+.div26:hover {
+  background-color: blueviolet;
+}
+
+.div27:hover {
+  background-color: blueviolet;
+}
+
+.div28:hover {
+  background-color: blueviolet;
+}
+
+.div29:hover {
+  background-color: blueviolet;
+}
+
+.div30:hover {
+  background-color: blueviolet;
+}
+
+.div32:hover {
+  background-color: blueviolet;
+}
+
+.div33:hover {
+  background-color: blueviolet;
+}
+
+.div34:hover {
+  background-color: blueviolet;
+}
+
+.div35:hover {
+  background-color: blueviolet;
+}
+
+.div36:hover {
+  background-color: blueviolet;
+}
+
+.div37:hover {
+  background-color: blueviolet;
+}
+
+.div1::selection {
+
+  background-color: red;
+
+}
+
+.div2::selection {
+
+  background-color: red;
+
+}
+
 
 </style>

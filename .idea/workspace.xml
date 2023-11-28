@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="77c6599a-5a34-4741-85d9-1853cba57f41" name="Changes" comment="Arena Ranking Screen is basically done, I just need to finish the filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/BuySell.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/BuySell.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/NewAtt.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/NewAtt.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +98,8 @@
       <workItem from="1700490970956" duration="8836000" />
       <workItem from="1700824286814" duration="3123000" />
       <workItem from="1701073642997" duration="7339000" />
-      <workItem from="1701099019605" duration="2414000" />
+      <workItem from="1701099019605" duration="3270000" />
+      <workItem from="1701166637806" duration="6455000" />
     </task>
     <task id="LOCAL-00001" summary="Arena Ranking Screen is basically done, I just need to finish the filter">
       <option name="closed" value="true" />
