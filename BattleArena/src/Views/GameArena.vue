@@ -146,12 +146,22 @@ export default {
     touchedOrientationButton() {
       this.mode = "orientation";
     },
-    cellClicked(event, location) {
-      console.log("ligma")
+    cellClicked(event, location, idPassed) {
       if (this.playerTurn === "player1") {
         if (this.mode === "move") {
-          this.player1Location = location
           console.log(this.player1Location)
+          const x = document.getElementById(idPassed)
+          if (x.backgroundColor === '#1a1a1a') {
+            x.backgroundColor = 'aquamarine';
+          }
+
+          const y = document.getElementById(this.player1Location)
+
+          if (y.backgroundColor === 'aquamarine') {
+            y.backgroundColor = '#1a1a1a';
+          }
+          this.player1Location = idPassed
+
         } else {
           if (this.mode === "attack") {
 
@@ -169,6 +179,8 @@ export default {
           if (this.mode === "move") {
             this.player2Location = location
             console.log(this.player2Location)
+
+
           } else {
             if (this.mode === "attack") {
 
@@ -220,7 +232,7 @@ export default {
       <section class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
 
         <div class="parent">
-          <button class="div1" v-on:dblclick="cellClicked($event, 'one')">fuck</button>
+          <button class="div1" id="cell1" v-on:dblclick="cellClicked($event, 'one',this.id)">fuck</button>
           <div class="div2" v-on:dblclick="cellClicked($event, 'two')">2</div>
           <div class="div3" v-on:dblclick="cellClicked($event, 'three')">3</div>
           <div class="div4" v-on:dblclick="cellClicked($event, 'four')">4</div>
@@ -662,14 +674,6 @@ export default {
 
 .div37:hover {
   background-color: blueviolet;
-}
-
-.div1::selection {
-  background-color: red;
-}
-
-.div2::selection {
-  background-color: red;
 }
 
 
