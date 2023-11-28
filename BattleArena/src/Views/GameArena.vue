@@ -16,7 +16,11 @@ export default {
   data() {
     return {
       movement: "",
-      playerOrientation: "",
+      playerTurn: "player1",
+      player1Location: "",
+      player1Orientation: "",
+      player2Location: "",
+      player2Orientation: "",
       gameID: "",
       mode: ""
     }
@@ -134,6 +138,7 @@ export default {
     },
     touchedMoveButton() {
       this.mode = "move";
+      console.log("move")
     },
     touchedAttackButton() {
       this.mode = "attack";
@@ -141,17 +146,43 @@ export default {
     touchedOrientationButton() {
       this.mode = "orientation";
     },
-    cellClicked() {
-      if (this.mode === "move") {
-
-      } else {
-        if (this.mode === "attack") {
-
+    cellClicked(event, location) {
+      console.log("ligma")
+      if (this.playerTurn === "player1") {
+        if (this.mode === "move") {
+          this.player1Location = location
+          console.log(this.player1Location)
         } else {
-          if (this.mode === "orientation") {
+          if (this.mode === "attack") {
 
+          } else {
+            if (this.mode === "orientation") {
+
+            } else {
+              console.log("please select a button type on the left of the screen")
+            }
           }
         }
+        this.playerTurn = "player2"
+      } else {
+        if (this.playerTurn === "player2") {
+          if (this.mode === "move") {
+            this.player2Location = location
+            console.log(this.player2Location)
+          } else {
+            if (this.mode === "attack") {
+
+            } else {
+              if (this.mode === "orientation") {
+
+              } else {
+                console.log("please select a button type on the left of the screen")
+              }
+            }
+          }
+
+        }
+        this.playerTurn = "player1"
       }
     }
 
@@ -189,12 +220,12 @@ export default {
       <section class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
 
         <div class="parent">
-          <div class="div1">1</div>
-          <div class="div2">2</div>
-          <div class="div3">3</div>
-          <div class="div4">4</div>
-          <div class="div5">5</div>
-          <div class="div6">7</div>
+          <button class="div1" v-on:dblclick="cellClicked($event, 'one')">fuck</button>
+          <div class="div2" v-on:dblclick="cellClicked($event, 'two')">2</div>
+          <div class="div3" v-on:dblclick="cellClicked($event, 'three')">3</div>
+          <div class="div4" v-on:dblclick="cellClicked($event, 'four')">4</div>
+          <div class="div5" v-on:dblclick="cellClicked($event, 'five')">5</div>
+          <div class="div6" v-on:dblclick="cellClicked($event, 'six')">7</div>
           <div class="div7">6</div>
           <div class="div8">8</div>
           <div class="div9">9</div>
@@ -634,15 +665,11 @@ export default {
 }
 
 .div1::selection {
-
   background-color: red;
-
 }
 
 .div2::selection {
-
   background-color: red;
-
 }
 
 
