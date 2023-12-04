@@ -23,11 +23,10 @@ export default {
     return {
       arenaGridCells: [],
       movement: "",
-      playerTurn: "player1",
-      player1Location: "",
-      player1Orientation: "",
-      player2Location: "",
-      player2Orientation: "",
+      gameLog: "",
+      player1LocationRow: 6,
+      player1LocationCol: 6,
+      player1Orientation: "NORD",
       gameID: "",
       mode: ""
     }
@@ -41,7 +40,6 @@ export default {
   },
   mounted() {
     console.log(this.arenaGridSize)
-
     this.arenaGridCells = Array(this.arenaGridSize).fill(0).map(
         (v1, row) =>
             Array(this.arenaGridSize).fill(0)
@@ -50,100 +48,11 @@ export default {
                   return {row: row, column: column, class: "desert"}
                 })
     )
+    this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "player"
   },
   methods: {
-
-    leaveGameAPICall() {
-      const leaveGameRequest = {gameID: this.gameID}
-      fetch("https://balandrau.salle.url.edu/i3/arena/{ID}play", {
-        method: 'DELETE',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(leaveGameRequest)
-      }).then((response) => {
-        if (response.ok) {
-          alert("You have left the game");
-          this.response = "You have left the game!";
-          return response;
-        }
-
-        return response.json();
-      }).then((res) => {
-        if (res.ok == undefined) {
-          this.response = res.error.message;
-        }
-      }).catch((error) => {
-        this.response = "No connection with API";
-      });
-    },
-    viewGameLogAPICall() {
-      const viewGameLogRequest = {gameID: this.gameID}
-      fetch("https://balandrau.salle.url.edu/i3/arenas/{gameID}/logs", {
-        method: 'GET',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(viewGameLogRequest)
-      }).then((response) => {
-        if (response.ok) {
-          alert("INSERT GAME LOG HERE OR SOMETHING");
-          this.response = "SHOW GAME LOG";
-          return response;
-        }
-
-        return response.json();
-      }).then((res) => {
-        if (res.ok == undefined) {
-          this.response = res.error.message;
-        }
-      }).catch((error) => {
-        this.response = "No connection with API";
-      });
-    },
-    changePlayerOrientationAPICall() {
-      const changePlayerOrientationRequest = {playerOrientation: this.playerOrientation}
-      fetch("https://balandrau.salle.url.edu/i3/arenas/direction", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(changePlayerOrientationRequest)
-      }).then((response) => {
-        if (response.ok) {
-          alert("changed orientation");
-          this.response = "changed orientation!";
-          return response;
-        }
-
-        return response.json();
-      }).then((res) => {
-        if (res.ok == undefined) {
-          this.response = res.error.message;
-        }
-      }).catch((error) => {
-        this.response = "No connection with API";
-      });
-    },
-    gameAttackAPICall() {
-      const gameAttackRequest = {attack_ID: this.playerOrientation}
-      fetch("https://balandrau.salle.url.edu/i3/arenas/attack/{attackID}", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(gameAttackRequest)
-      }).then((response) => {
-        if (response.ok) {
-          alert("Attacked");
-          this.response = "Attacked!";
-          return response;
-        }
-
-        return response.json();
-      }).then((res) => {
-        if (res.ok == undefined) {
-          this.response = res.error.message;
-        }
-      }).catch((error) => {
-        this.response = "No connection with API";
-      });
-    },
     touchedMoveButton() {
       this.mode = "move";
-      console.log("move")
     },
     touchedAttackButton() {
       this.mode = "attack";
@@ -156,14 +65,20 @@ export default {
       const element = event.target
       let row = element.getAttribute("data-grid-row")
       let column = element.getAttribute("data-grid-column")
+      if (this.mode === "attack") {
+        this.arenaGridCells[row][column].class = "nuke"
+      } else {
+        if (this.mode === "move") {
+          this.arenaGridCells[row][column].class = "player"
+          this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "desert"
+          this.player1LocationRow = row
+          this.player1LocationCol = column
+        } else {
+          if (this.mode === "orientation") {
 
-
-      console.log(row)
-      console.log(column)
-
-      this.arenaGridCells[row][column].class = "nuke"
-
-
+          }
+        }
+      }
     }
 
   }
@@ -285,12 +200,21 @@ export default {
 }
 
 .desert {
-  background-color: yellow;
+  background-color: grey;
 }
 
 .nuke {
-  background-color: red;
+  background-color: coral;
 }
+
+.player {
+  background-color: goldenrod;
+}
+
+.enemy-loc {
+  background-color: crimson;
+}
+
 
 .arena-grid-cell:hover {
   background-color: blueviolet;
