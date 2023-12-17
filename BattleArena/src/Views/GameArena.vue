@@ -13,6 +13,8 @@ const navigateTo = (page) => {
 
 <script>
 
+import Api from "../service/Api.js";
+
 export default {
   props: {
     arenaGridSize: {
@@ -67,6 +69,8 @@ export default {
       let row = element.getAttribute("data-grid-row")
       let column = element.getAttribute("data-grid-column")
       if (this.mode === "attack") {
+        <!-- How TF do i get the attack ID??-->
+        Api.gameAttackAPICall(attackID)
         if (this.player1Health < 10) {
           this.player1Health = 0
           this.arenaGridCells[row][column].class = "noHealth"

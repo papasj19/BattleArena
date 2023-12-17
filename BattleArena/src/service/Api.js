@@ -97,8 +97,8 @@ export default class Api {
         });
     }
 
-    gameAttackAPICall() {
-        const gameAttackRequest = {attack_ID: this.playerOrientation}
+    gameAttackAPICall(attackIDGiven) {
+        const gameAttackRequest = {attack_ID: attackIDGiven}
         fetch(this.server + "arenas/attack/{attackID}", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
