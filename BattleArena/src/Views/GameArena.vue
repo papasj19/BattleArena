@@ -1,6 +1,7 @@
 <script setup>
 
 import {useRouter} from 'vue-router';
+import Api from "../service/Api.js";
 
 const router = useRouter();
 
@@ -27,6 +28,7 @@ export default {
       player1LocationRow: 6,
       player1LocationCol: 6,
       player1Orientation: "NORD",
+      player1Health: 100,
       gameID: "",
       mode: ""
     }
@@ -35,7 +37,6 @@ export default {
     computedArenaGridCells() {
       console.log(this.arenaGridCells)
       return this.arenaGridCells.flat();
-
     }
   },
   mounted() {
@@ -60,13 +61,19 @@ export default {
     touchedOrientationButton() {
       this.mode = "orientation";
     },
-    cellClicked(event, location, idPassed) {
+    cellClicked(event) {
       console.log(event.target)
       const element = event.target
       let row = element.getAttribute("data-grid-row")
       let column = element.getAttribute("data-grid-column")
       if (this.mode === "attack") {
-        this.arenaGridCells[row][column].class = "nuke"
+        if (this.player1Health < 10) {
+          this.player1Health = 0
+          this.arenaGridCells[row][column].class = "noHealth"
+        } else {
+          this.player1Health = this.player1Health - 10
+          this.arenaGridCells[row][column].class = "nuke"
+        }
       } else {
         if (this.mode === "move") {
           this.arenaGridCells[row][column].class = "player"
@@ -133,7 +140,7 @@ export default {
           <img src="src/assets/photos/rick.png" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto" alt="Player 1"/>
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
             <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                 style="width: 30%"> 30%
+                 style="width: 30%"> {{ this.player1Health }}
             </div>
           </div>
         </section>
@@ -151,7 +158,7 @@ export default {
         <!-- ViewLogs Button -->
         <button
             class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            v-on:click="viewGameLogAPICall">Game Log
+            v-on:click="Api.viewGameLogAPICall">Game Log
         </button>
 
       </section>
@@ -159,7 +166,7 @@ export default {
     <!-- End Game Button -->
     <button
         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-        v-on:click="leaveGameAPICall" @click="navigateTo('ArenaManage')">End Game
+        v-on:click="Api.leaveGameAPICall" @click="navigateTo('ArenaManage')">End Game
     </button>
   </div>
 </template>
@@ -205,6 +212,10 @@ export default {
 
 .nuke {
   background-color: coral;
+}
+
+.noHealth {
+  background-color: navajowhite;
 }
 
 .player {
