@@ -3,6 +3,63 @@ import list from "/src/components/list.vue";
 
 </script>
 
+<script>
+
+function playerToCell(player) {
+  let cell = []
+  cell.push(player.player_ID)
+  cell.push(player.xp)
+  cell.push(player.level)
+  cell.push(player.coins)
+
+  return cell
+}
+
+function playersToCells(players) {
+  return players.map(playerToCell)
+}
+
+export default {
+  data() {
+    return {
+      players: []
+    }
+  },
+  methods: {
+    getAllPlayers() {
+      const getAllPlayers = {}
+      fetch("https://balandrau.salle.url.edu/i3/players", {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Bearer': "a"/* bearer token*/
+       }
+      },
+      ).then((response) => {
+        if (response.ok) {
+          alert("Response OK");
+        }
+
+        return response.json();
+      }).then((body) => {
+        if (response.ok) {
+          console.log(body)
+          this.players = playersToCells(body);
+        } else {
+          console.log(body)
+        }
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    }
+  }
+}
+
+</script>
+
 <template>
   <!--setting up background and formating page-->
   <div class="player-ranking-container flex flex-col justify-content">
@@ -68,7 +125,8 @@ import list from "/src/components/list.vue";
     <list
         title="Player Rankings"
         subtitle="Here is the ranking of the players."
-        :columns="['Player ID', 'Experience', 'Level', 'Coins', 'Name']"
+        :columns="['Player ID', 'Experience', 'Level', 'Coins']"
+        :content="players"
     />
 
   </div>
