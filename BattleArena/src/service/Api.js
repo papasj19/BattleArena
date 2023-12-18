@@ -5,6 +5,15 @@ export default class Api {
 
     }
 
+    static newArenaAPICall(gameId, size, maxHp) {
+        const createNewArenaRequest = {gameID: gameId, size: size, HP_max: maxHp}
+        return fetch("https://balandrau.salle.url.edu/i3/players", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(createNewArenaRequest)
+        })
+    }
+
     leaveGameAPICall() {
         const leaveGameRequest = {gameID: this.gameID}
         fetch(this.server + "arena/{ID}play", {

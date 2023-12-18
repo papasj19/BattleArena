@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="77c6599a-5a34-4741-85d9-1853cba57f41" name="Changes" comment="Arena Ranking Screen is basically done, I just need to finish the filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/App.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/service/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/service/Api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +56,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.github.copilot.settings.ApplicationConfigurable&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
@@ -103,7 +106,9 @@
       <workItem from="1701701523085" duration="9594000" />
       <workItem from="1702308847782" duration="118000" />
       <workItem from="1702822619562" duration="2376000" />
-      <workItem from="1702893737383" duration="1301000" />
+      <workItem from="1702893737383" duration="3624000" />
+      <workItem from="1702915538019" duration="378000" />
+      <workItem from="1702916257190" duration="1002000" />
     </task>
     <task id="LOCAL-00001" summary="Arena Ranking Screen is basically done, I just need to finish the filter">
       <option name="closed" value="true" />

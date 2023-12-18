@@ -142,7 +142,7 @@ export default {
           <img src="src/assets/photos/rick.png" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto" alt="Player 1"/>
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
             <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                 style="width: 30%"> {{ this.player1Health }}
+                 :style="{ width: player1Health + '%' }"> {{ this.player1Health }}
             </div>
           </div>
         </section>
