@@ -12,6 +12,8 @@ const navigateTo = (page) => {
 </script>
 
 <script>
+import Api from "../service/Api.js";
+
 export default {
   data() {
     return {
@@ -21,22 +23,16 @@ export default {
     }
   },
   methods: {
-    buyAttackAPICall() {
-      const buyAttackRequest = {attack_ID: this.attackID}
-
-      fetch("https://balandrau.salle.url.edu/i3/shop/attacks", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(buyAttackRequest)
-      }).then((response) => {
-        if (response.ok) {
-          alert("Attack bought");
-          this.response = "Attack bought!";
-          return response;
-        }
-
-        return response.json();
-      }).then((res) => {
+    buyAttack() {
+      Api.buyAttackAPICall(this.attackID)
+          .then((response) => {
+            if (response.ok) {
+              alert("Attack bought");
+              this.response = "Attack bought!";
+              return response;
+            }
+            return response.json();
+          }).then((res) => {
         if (res.ok == undefined) {
           this.response = res.error.message;
         }
@@ -44,19 +40,13 @@ export default {
         this.response = "No connection with API";
       });
     },
-    sellAttackAPICall() {
-      const sellAttackRequest = {attack_ID: this.attackID}
-      fetch("https://balandrau.salle.url.edu/i3/shop/attacks", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(sellAttackRequest)
-      }).then((response) => {
+    sellAttack() {
+      Api.sellAttackAPICall(this.attackID).then((response) => {
         if (response.ok) {
           alert("Attack sold");
           this.response = "Attack sold!";
           return response;
         }
-
         return response.json();
       }).then((res) => {
         if (res.ok == undefined) {

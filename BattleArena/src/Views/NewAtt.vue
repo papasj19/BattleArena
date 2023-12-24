@@ -12,6 +12,8 @@ const navigateTo = (page) => {
 
 <script>
 
+import Api from "../service/Api.js";
+
 export default {
   data() {
     return {
@@ -21,19 +23,13 @@ export default {
     }
   },
   methods: {
-    newAttackAPICall() {
-      const createAttackRequest = {attack_ID: this.attackID, position: this.positions, img: this.image}
-      fetch("https://balandrau.salle.url.edu/i3/shop/attacks", {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(createAttackRequest)
-      }).then((response) => {
+    createNewAttack() {
+      Api.newAttackAPICall(this.attackID, this.positions, this.image).then((response) => {
         if (response.ok) {
           alert("Attack Created");
           this.response = "Attack created!";
           return response;
         }
-
         return response.json();
       }).then((res) => {
         if (res.ok == undefined) {
@@ -74,13 +70,12 @@ export default {
               <input class="inputBar" type="text" placeholder="image" name="img" v-model="image">
             </div>
           </form>
-
         </section>
       </section>
     </section>
     <button
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 m-2"
-        v-on:click="newAttackAPICall()" @click="navigateTo('BuySell')">Create Attack
+        v-on:click="createNewAttack" @click="navigateTo('BuySell')">Create Attack
     </button>
   </div>
 
