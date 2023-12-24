@@ -11,7 +11,8 @@ export default {
   data() {
     return {
       gameID: "",
-      size: 0
+      size: 0,
+      response: ""
     }
   },
   methods: {

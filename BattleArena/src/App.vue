@@ -11,7 +11,10 @@ const navigateTo = (page) => {
 <script>
 export default {
   data() {
-    currentGameId: ""
+    return {
+      currentGameId: "",
+      currentUserToken: ""
+    }
   }
 }
 </script>

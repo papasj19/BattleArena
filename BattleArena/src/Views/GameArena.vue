@@ -54,6 +54,41 @@ export default {
     this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "player"
   },
   methods: {
+    leaveGame() {
+      Api.leaveGameAPICall(this.gameID).then((response) => {
+        if (response.ok) {
+          alert("Game Left");
+          this.response = "Game Left!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
+    viewGameLogs() {
+      Api.viewGameLogAPICall(this.gameID).then((response) => {
+        if (response.ok) {
+          alert("Game Log");
+          this.response = "Game Log!";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
+
     touchedMoveButton() {
       this.mode = "move";
     },
@@ -160,7 +195,7 @@ export default {
         <!-- ViewLogs Button -->
         <button
             class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            v-on:click="Api.viewGameLogAPICall">Game Log
+            v-on:click="viewGameLogs">Game Log
         </button>
 
       </section>
@@ -168,7 +203,7 @@ export default {
     <!-- End Game Button -->
     <button
         class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-        v-on:click="Api.leaveGameAPICall" @click="navigateTo('ArenaManage')">End Game
+        v-on:click="leaveGame" @click="navigateTo('ArenaManage')">End Game
     </button>
   </div>
 </template>
