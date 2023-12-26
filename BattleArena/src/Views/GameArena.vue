@@ -31,6 +31,11 @@ export default {
       player1LocationCol: 6,
       player1Orientation: "NORD",
       player1Health: 100,
+      player1Attacks: [],
+      player2LocationRow: 1,
+      player2LocationCol: 1,
+      player2Orientation: "NORD",
+      player2Health: 100,
       gameID: "",
       mode: ""
     }
@@ -51,9 +56,27 @@ export default {
                   return {row: row, column: column, class: "desert"}
                 })
     )
+    this.arenaGridCells[this.player2LocationRow][this.player2LocationCol].class = "enemy"
     this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "player"
   },
   methods: {
+    movePlayer(movement) {
+      Api.playerMovementAPICall(movement).then((response) => {
+        if (response.ok) {
+          alert("Moved");
+          this.response = "Moved";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
     leaveGame() {
       Api.leaveGameAPICall(this.gameID).then((response) => {
         if (response.ok) {
@@ -75,7 +98,7 @@ export default {
       Api.viewGameLogAPICall(this.gameID).then((response) => {
         if (response.ok) {
           alert("Game Log");
-          this.response = "Game Log!";
+          this.response = response.description;
           return response;
         }
 
@@ -104,6 +127,7 @@ export default {
       let row = element.getAttribute("data-grid-row")
       let column = element.getAttribute("data-grid-column")
       if (this.mode === "attack") {
+
         if (this.player1Health < 10) {
           this.player1Health = 0
           this.arenaGridCells[row][column].class = "noHealth"
@@ -113,6 +137,9 @@ export default {
         }
       } else {
         if (this.mode === "move") {
+          let movement = "\nPlayer 1 moved from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
+          this.gameLog += movement
+          this.movePlayer(movement)
           this.arenaGridCells[row][column].class = "player"
           this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "desert"
           this.player1LocationRow = row
@@ -188,7 +215,7 @@ export default {
                alt="Player 2"/>
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
             <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                 style="width: 95%"> 95%
+                 :style="{ width: player2Health + '%' }"> {{ this.player2Health }}
             </div>
           </div>
         </section>
@@ -240,7 +267,7 @@ export default {
 }
 
 .arena-grid-cell {
-  background-color: #1a1a1a;
+
 }
 
 .desert {
@@ -256,10 +283,10 @@ export default {
 }
 
 .player {
-  background-color: goldenrod;
+  background: url("BattleArena/src/assets/photos/arrow.png") no-repeat fixed center center;
 }
 
-.enemy-loc {
+.enemy {
   background-color: crimson;
 }
 

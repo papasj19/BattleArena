@@ -38,7 +38,7 @@ export default class Api {
         })
     }
 
-    playerMovementAPICall(mvmt) {
+    static playerMovementAPICall(mvmt) {
         const playerMovementRequest = {movement: mvmt}
         return fetch(this.server + "arenas/move", {
             method: 'POST',
@@ -62,6 +62,13 @@ export default class Api {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(createUserRequest)
+        })
+    }
+
+    static getPlayerAttackAPICall(token) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/attacks", {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'}
         })
     }
 
