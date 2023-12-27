@@ -66,9 +66,12 @@ export default class Api {
     }
 
     static getPlayerAttackAPICall(token) {
-        return fetch("https://balandrau.salle.url.edu/i3/players/attacks", {
+        return fetch(this.server + "players/" + token + "/attacks/", {
             method: 'GET',
-            headers: {'Content-Type': 'application/json'}
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
         })
     }
 

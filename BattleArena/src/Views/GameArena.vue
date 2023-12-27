@@ -2,6 +2,8 @@
 
 import {useRouter} from 'vue-router';
 import Api from "../service/Api.js";
+import List from "../components/list.vue";
+import currentUserToken from "../App.vue";
 
 const router = useRouter();
 
@@ -14,6 +16,18 @@ const navigateTo = (page) => {
 <script>
 
 import Api from "../service/Api.js";
+
+function attackToCell(attack) {
+  let cell = []
+  cell.push(attack.attack_ID)
+  cell.push(attack.power)
+  cell.push(attack.equiped)
+  return cell
+}
+
+function attacksToCells(attacks) {
+  return attacks.map(attackToCell)
+}
 
 export default {
   props: {
@@ -58,8 +72,29 @@ export default {
     )
     this.arenaGridCells[this.player2LocationRow][this.player2LocationCol].class = "enemy"
     this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "player"
+
   },
   methods: {
+    getPlayerAttacks() {
+      Api.getPlayerAttacksAPICall(currentUserToken).then((response) => {
+        if (response.ok) {
+          alert("Response OK");
+        }
+        return response.json();
+      }).then((body) => {
+        if (response.ok) {
+          console.log(body)
+          this.player1Attacks = attacksToCells(body);
+        } else {
+          console.log(body)
+        }
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
     movePlayer(movement) {
       Api.playerMovementAPICall(movement).then((response) => {
         if (response.ok) {
@@ -128,11 +163,11 @@ export default {
       let column = element.getAttribute("data-grid-column")
       if (this.mode === "attack") {
 
-        if (this.player1Health < 10) {
-          this.player1Health = 0
+        if (this.player2Health < 10) {
+          this.player2Health = 0
           this.arenaGridCells[row][column].class = "noHealth"
         } else {
-          this.player1Health = this.player1Health - 10
+          this.player2Health = this.player2Health - 10
           this.arenaGridCells[row][column].class = "nuke"
         }
       } else {
@@ -165,7 +200,15 @@ export default {
   <div class="game-arena-container flex flex-col justify-center items-center min-h-screen">
     <!-- aligning page content vertically -->
     <div class="flex flex-col sm:flex-row justify-center items-center w-fit">
+      <section class="flex flex-col">
+        <list
+            title="Your Player Attacks"
+            subtitle=" "
+            :columns="['Attack ID', 'Power', 'Equipped']"
+            :content="player1Attacks"
+        />
 
+      </section>
 
       <section class="flex flex-col">
         <button
@@ -201,7 +244,8 @@ export default {
         <!-- Player 1 Section -->
         <section class="p-2 flex-1">
           <h2 class="text-center">Player 1</h2>
-          <img src="src/assets/photos/rick.png" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto" alt="Player 1"/>
+          <img src="src/assets/photos/kitty.jpeg" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto"
+               alt="Player 1"/>
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
             <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                  :style="{ width: player1Health + '%' }"> {{ this.player1Health }}
@@ -211,7 +255,7 @@ export default {
         <!-- Player 2 Section -->
         <section class="px-2 flex-1">
           <h2 class="text-center">Player 2</h2>
-          <img src="src/assets/photos/kitty.jpeg" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto"
+          <img src="src/assets/photos/rick.png" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto"
                alt="Player 2"/>
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
             <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
@@ -263,6 +307,8 @@ export default {
   grid-row-gap: 2px;
   width: calc(v-bind(arenaGridSize) * 50px);
   height: calc(v-bind(arenaGridSize) * 50px);
+  background-attachment: fixed;
+  background-image: url("BattleArena/src/assets/photos/arrow.png")
 
 }
 
@@ -283,7 +329,7 @@ export default {
 }
 
 .player {
-  background: url("BattleArena/src/assets/photos/arrow.png") no-repeat fixed center center;
+  background-color: salmon;
 }
 
 .enemy {
