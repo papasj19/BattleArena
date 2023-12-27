@@ -130,10 +130,13 @@ export default {
       });
     },
     viewGameLogs() {
+
+      alert(this.gameLog);
       Api.viewGameLogAPICall(this.gameID).then((response) => {
         if (response.ok) {
           alert("Game Log");
           this.response = response.description;
+          alert(this.response);
           return response;
         }
 
@@ -162,10 +165,15 @@ export default {
       let row = element.getAttribute("data-grid-row")
       let column = element.getAttribute("data-grid-column")
       if (this.mode === "attack") {
+        let movement = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
+        this.gameLog += movement
 
-        if (this.player2Health < 10) {
+        if (this.player2Health <= 10) {
           this.player2Health = 0
           this.arenaGridCells[row][column].class = "noHealth"
+
+          let slain = "\nPlayer 1 defeated Player 2\n"
+          this.gameLog += slain
         } else {
           this.player2Health = this.player2Health - 10
           this.arenaGridCells[row][column].class = "nuke"
