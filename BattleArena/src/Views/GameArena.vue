@@ -46,6 +46,7 @@ export default {
       player1Orientation: "NORD",
       player1Health: 100,
       player1Attacks: [],
+      player1FutureOrientation: "",
       player2LocationRow: 1,
       player2LocationCol: 1,
       player2Orientation: "NORD",
@@ -75,6 +76,23 @@ export default {
 
   },
   methods: {
+    changeOrientation() {
+      Api.changePlayerOrientationAPICall(this.player1FutureOrientation).then((response) => {
+        if (response.ok) {
+          alert("Changed");
+          this.response = "Changed";
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
     getPlayerAttacks() {
       Api.getPlayerAttacksAPICall(currentUserToken).then((response) => {
         if (response.ok) {
@@ -159,6 +177,9 @@ export default {
     touchedOrientationButton() {
       this.mode = "orientation";
     },
+    setFutureOrientation(orientation) {
+      this.player1FutureOrientation = orientation
+    },
     cellClicked(event) {
       console.log(event.target)
       const element = event.target
@@ -189,7 +210,10 @@ export default {
           this.player1LocationCol = column
         } else {
           if (this.mode === "orientation") {
-
+            this.changeOrientation(this.player1FutureOrientation)
+            let orient = "\nPlayer 1 changed orientation from " + this.player1Orientation + " to " + this.player1FutureOrientation + "\n"
+            this.gameLog += orient
+            this.player1Orientation = this.player1FutureOrientation
           }
         }
       }
@@ -218,6 +242,7 @@ export default {
 
       </section>
 
+
       <section class="flex flex-col">
         <button
             class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
@@ -231,6 +256,30 @@ export default {
             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             v-on:click="touchedOrientationButton">Direction
         </button>
+        <button type="button" class="call-to-action1" value="NORD" style="white-space:nowrap"
+                v-on:click="setFutureOrientation('NORD')">N
+          <span class="little-arrow"
+                style="-ms-transform: rotate(180deg);transform: rotate(180deg); /* Chrome, Safari, Opera */; color: white; font-size:14px; display: inline-block">&#8711</span>
+        </button>
+        <div class="flex flex row">
+          <button type="button" v-on:click="setFutureOrientation('OEST')" class="call-to-action1" value="OEST"
+                  style="white-space:nowrap">
+            <span class="little-arrow"
+                  style="-ms-transform: rotate(90deg);transform: rotate(90deg); /* Chrome, Safari, Opera */; color: white; font-size:14px; display: inline-block">&#8711</span>
+            W
+          </button>
+          <button type="button" v-on:click="setFutureOrientation('EST')" class="call-to-action1" value="EST"
+                  style="white-space:nowrap">E
+            <span class="little-arrow"
+                  style="-ms-transform: rotate(270deg);transform: rotate(270deg); /* Chrome, Safari, Opera */; color: white; font-size:14px; display: inline-block">&#8711</span>
+          </button>
+        </div>
+        <button type="button" v-on:click="setFutureOrientation('SUD')" class="call-to-action1" value="SUD"
+                style="white-space:nowrap">S
+          <span class="little-arrow"
+                style="-ms-transform: rotate(0deg);transform: rotate(0deg); /* Chrome, Safari, Opera */; color: white; font-size:14px; display: inline-block">&#8711</span>
+        </button>
+
       </section>
 
       <!-- Image container -->

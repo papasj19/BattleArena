@@ -29,8 +29,8 @@ export default class Api {
         })
     }
 
-    changePlayerOrientationAPICall() {
-        const changePlayerOrientationRequest = {playerOrientation: this.playerOrientation}
+    static changePlayerOrientationAPICall(direction) {
+        const changePlayerOrientationRequest = {playerOrientation: direction}
         return fetch(this.server + "arenas/direction", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
