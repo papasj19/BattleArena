@@ -167,7 +167,9 @@ export default {
         this.response = "No connection with API";
       });
     },
-
+    touchedQButton() {
+      alert("To move, click the move button then double click on the cell you want to move to. \nTo attack, click on the attack button and then double click on the cell you want to attack. \nTo change orientation, click on the corresponding arrow button with the direction you want to face.");
+    },
     touchedMoveButton() {
       this.mode = "move";
     },
@@ -175,10 +177,13 @@ export default {
       this.mode = "attack";
     },
     touchedOrientationButton() {
-      this.mode = "orientation";
     },
     setFutureOrientation(orientation) {
       this.player1FutureOrientation = orientation
+      this.changeOrientation(this.player1FutureOrientation)
+      let orient = "\nPlayer 1 changed orientation from " + this.player1Orientation + " to " + this.player1FutureOrientation + "\n"
+      this.gameLog += orient
+      this.player1Orientation = this.player1FutureOrientation
     },
     cellClicked(event) {
       console.log(event.target)
@@ -188,16 +193,23 @@ export default {
       if (this.mode === "attack") {
         let movement = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
         this.gameLog += movement
+        if (row === this.player2LocationRow && column === this.player2LocationCol) {
+          let action = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
+          this.gameLog += action
+          if (this.player2Health <= 10) {
+            this.player2Health = 0
+            this.arenaGridCells[row][column].class = "noHealth"
 
-        if (this.player2Health <= 10) {
-          this.player2Health = 0
-          this.arenaGridCells[row][column].class = "noHealth"
-
-          let slain = "\nPlayer 1 defeated Player 2\n"
-          this.gameLog += slain
+            let slain = "\nPlayer 1 defeated Player 2\n"
+            this.gameLog += slain
+          } else {
+            this.player2Health = this.player2Health - 10
+            this.arenaGridCells[row][column].class = "nuke"
+          }
         } else {
-          this.player2Health = this.player2Health - 10
-          this.arenaGridCells[row][column].class = "nuke"
+          let movement = "\nPlayer 1 missed attack on (" + row + "," + column + ")\n"
+          this.gameLog += movement
+          this.arenaGridCells[row][column].class = "missed"
         }
       } else {
         if (this.mode === "move") {
@@ -208,13 +220,6 @@ export default {
           this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "desert"
           this.player1LocationRow = row
           this.player1LocationCol = column
-        } else {
-          if (this.mode === "orientation") {
-            this.changeOrientation(this.player1FutureOrientation)
-            let orient = "\nPlayer 1 changed orientation from " + this.player1Orientation + " to " + this.player1FutureOrientation + "\n"
-            this.gameLog += orient
-            this.player1Orientation = this.player1FutureOrientation
-          }
         }
       }
     }
@@ -245,16 +250,12 @@ export default {
 
       <section class="flex flex-col">
         <button
-            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+            class="focus:outline-none text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:ring-orange-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800"
             v-on:click="touchedAttackButton">Attack
         </button>
         <button
             class="focus:outline-none text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800"
             v-on:click="touchedMoveButton">Move
-        </button>
-        <button
-            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-            v-on:click="touchedOrientationButton">Direction
         </button>
         <button type="button" class="call-to-action1" value="NORD" style="white-space:nowrap"
                 v-on:click="setFutureOrientation('NORD')">N
@@ -278,6 +279,11 @@ export default {
                 style="white-space:nowrap">S
           <span class="little-arrow"
                 style="-ms-transform: rotate(0deg);transform: rotate(0deg); /* Chrome, Safari, Opera */; color: white; font-size:14px; display: inline-block">&#8711</span>
+        </button>
+
+        <button
+            class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            v-on:click="touchedQButton">What To Do?
         </button>
 
       </section>

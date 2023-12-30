@@ -12,15 +12,23 @@ export default {
     return {
       gameID: "",
       size: 0,
-      response: ""
+      response: "",
+      numberOfAttacks: 0,
+      playerHP: 0
     }
   },
   methods: {
     navigateTo(page) {
       this.$router.push(`/${page}`);
     },
+    setHP(HP) {
+      this.playerHP = HP;
+    },
+    setSize(sizeg) {
+      this.size = sizeg;
+    },
     createNewArena() {
-      Api.newArenaAPICall(this.gameID, this.size, 100).then((response) => {
+      Api.newArenaAPICall(this.gameID, this.size, this.playerHP).then((response) => {
         if (response.ok) {
           alert("Arena Entered");
           this.response = "Arena Entered!";
@@ -59,37 +67,34 @@ export default {
           <!-- centering the title of options section, giving the user options to pre load their arena -->
           <h2 class="text-center">Pre-Load:</h2>
           <!-- Size of arena option -->
-          <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                  class="inline-flex items-center m-2 text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                  type="button">
-            <svg class="w-3 h-3 text-gray-500 dark:text-gray-400 mr-2.5" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                  d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-            </svg>
-            Matrix Size
-            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 10 6">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 4 4 4-4"/>
-            </svg>
-          </button>
+          <label for="sizeMatrix">Matrix Size: </label>
+          <select name="sizeMatrix" id="sizeMatrix">
+            <option value="2" onclick="setSize(2)">2</option>
+            <option value="3" onclick="setSize(3)">3</option>
+            <option value="4" onclick="setSize(4)">4</option>
+            <option value="5" onclick="setSize(5)">5</option>
+            <option value="6" onclick="setSize(6)">6</option>
+            <option value="7" onclick="setSize(7)">7</option>
+            <option value="8" onclick="setSize(8)">8</option>
+            <option value="9" onclick="setSize(9)">9</option>
+            <option value="10" onclick="setSize(10)">10</option>
+          </select>
+
+
+          <label for="hpPlay">Player HP: </label>
+          <select name="hpPlay" id="hpPlay">
+            <option value="50" onclick="setHP(50)">50</option>
+            <option value="75" onclick="setHP(75)">75</option>
+            <option value="100" onclick="setHP(100)">100</option>
+            <option value="200" onclick="setHP(200)">200</option>
+          </select>
           <!-- Attack option -->
-          <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio"
-                  class="inline-flex items-center m-2 text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
-                  type="button">
-            <svg class="w-3 h-3 text-gray-500 dark:text-gray-400 mr-2.5" aria-hidden="true"
-                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                  d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
-            </svg>
-            Attacks
-            <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 10 6">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="m1 1 4 4 4-4"/>
-            </svg>
-          </button>
+          <label for="attacks">Equipped Attacks: </label>
+          <select name="attacks" id="attacks">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
           <!-- Submit filters button -->
           <button
               class="focus:outline-none text-white m-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
