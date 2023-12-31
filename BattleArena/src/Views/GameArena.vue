@@ -179,11 +179,15 @@ export default {
     touchedOrientationButton() {
     },
     setFutureOrientation(orientation) {
-      this.player1FutureOrientation = orientation
-      this.changeOrientation(this.player1FutureOrientation)
-      let orient = "\nPlayer 1 changed orientation from " + this.player1Orientation + " to " + this.player1FutureOrientation + "\n"
-      this.gameLog += orient
-      this.player1Orientation = this.player1FutureOrientation
+      if (orientation === this.player1Orientation) {
+        alert("You are already facing that direction")
+      } else {
+        this.player1FutureOrientation = orientation
+        this.changeOrientation(this.player1FutureOrientation)
+        let orient = "\nPlayer 1 changed orientation from " + this.player1Orientation + " to " + this.player1FutureOrientation + "\n"
+        this.gameLog += orient
+        this.player1Orientation = this.player1FutureOrientation
+      }
     },
     cellClicked(event) {
       console.log(event.target)

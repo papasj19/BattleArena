@@ -8,14 +8,39 @@ import Api from "../service/Api.js";
 import Api from "../service/Api.js";
 
 export default {
+  props: {
+    arenaGridSize: {
+      type: Number,
+      default: 3
+    }
+  },
   data() {
     return {
+      arenaGridCells: [],
       gameID: "",
       size: 0,
       response: "",
       numberOfAttacks: 0,
       playerHP: 0
     }
+  },
+
+  computed: {
+    computedArenaGridCells() {
+      console.log(this.arenaGridCells)
+      return this.arenaGridCells.flat();
+    }
+  },
+  mounted() {
+    console.log(this.arenaGridSize)
+    this.arenaGridCells = Array(this.arenaGridSize).fill(0).map(
+        (v1, row) =>
+            Array(this.arenaGridSize).fill(0)
+                .map((v2, column) => {
+                  console.log(this.arenaGridSize)
+                  return {row: row, column: column, class: "ex"}
+                })
+    )
   },
   methods: {
     navigateTo(page) {
@@ -25,7 +50,7 @@ export default {
       this.playerHP = HP;
     },
     setSize(sizeg) {
-      this.size = sizeg;
+      this.arenaGridSize = sizeg;
     },
     createNewArena() {
       Api.newArenaAPICall(this.gameID, this.size, this.playerHP).then((response) => {
@@ -57,8 +82,15 @@ export default {
     <!-- Aligning the page vertically -->
     <section class="flex flex-col sm:flex-row justify-center items-center w-fit">
       <!-- The side of the arena image -->
-      <section class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
-        <img src="src/assets/photos/arena_template.png" class="h-auto sm:h-75 mx-auto" alt="new arena"/>
+      <!-- Image container -->
+      <section class="parent">
+        <div v-for="cell in computedArenaGridCells" class="arena-grid-cell" :class="cell.class"
+             :data-grid-row="cell.row"
+             :data-grid-column="cell.column">
+          {{ cell.class }}
+
+        </div>
+
       </section>
       <!-- formatting the right portion of the screen with a box nicely formatted for user visuals  -->
       <section class="flex flex-col justify-around rounded-lg bg-white dark:bg-gray-900">
@@ -97,7 +129,8 @@ export default {
           </select>
           <!-- Submit filters button -->
           <button
-              class="focus:outline-none text-white m-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              class="focus:outline-none text-white m-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              v-on:click="createNewArena" @click="navigateTo('GameArena')">
             Apply Filter(s)
           </button>
         </section>
@@ -127,5 +160,26 @@ export default {
   height: 100vh;
   justify-content: center;
   align-content: center;
+}
+
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(v-bind(arenaGridSize), 1fr);
+  grid-template-rows: repeat(v-bind(arenaGridSize), 1fr);
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+  width: calc(v-bind(arenaGridSize) * 50px);
+  height: calc(v-bind(arenaGridSize) * 50px);
+  background-attachment: fixed;
+
+}
+
+.arena-grid-cell {
+
+}
+
+.ex {
+  background-color: grey;
 }
 </style>
