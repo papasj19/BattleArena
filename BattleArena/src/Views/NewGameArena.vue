@@ -6,6 +6,9 @@ import Api from "../service/Api.js";
 
 <script>
 import Api from "../service/Api.js";
+import gameArena from "./GameArena.vue";
+import GameArena from "./GameArena.vue";
+import {computed} from "vue";
 
 export default {
   props: {

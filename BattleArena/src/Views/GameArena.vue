@@ -189,6 +189,11 @@ export default {
         this.player1Orientation = this.player1FutureOrientation
       }
     },
+    checkOrientationBounds(column, row) {
+      if (this.player1Orientation === "OEST") {
+        return column <= this.player1LocationCol;
+      }
+    },
     cellClicked(event) {
       console.log(event.target)
       const element = event.target
@@ -198,8 +203,6 @@ export default {
         let movement = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
         this.gameLog += movement
         if (row === this.player2LocationRow && column === this.player2LocationCol) {
-          let action = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
-          this.gameLog += action
           if (this.player2Health <= 10) {
             this.player2Health = 0
             this.arenaGridCells[row][column].class = "noHealth"
@@ -209,6 +212,7 @@ export default {
           } else {
             this.player2Health = this.player2Health - 10
             this.arenaGridCells[row][column].class = "nuke"
+            this.arenaGridCells[row + 1][column].class = "enemy"
           }
         } else {
           let movement = "\nPlayer 1 missed attack on (" + row + "," + column + ")\n"
@@ -393,6 +397,10 @@ export default {
 
 .noHealth {
   background-color: navajowhite;
+}
+
+.missed {
+  background-color: cornflowerblue;
 }
 
 .player {
