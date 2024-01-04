@@ -7,7 +7,6 @@
     <list default="true" id="77c6599a-5a34-4741-85d9-1853cba57f41" name="Changes" comment="Arena Ranking Screen is basically done, I just need to finish the filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +111,9 @@
       <workItem from="1703605050217" duration="8636000" />
       <workItem from="1703847240800" duration="4373000" />
       <workItem from="1703948600611" duration="6212000" />
-      <workItem from="1704231848867" duration="413000" />
+      <workItem from="1704231848867" duration="654000" />
+      <workItem from="1704283558741" duration="1201000" />
+      <workItem from="1704357274668" duration="3119000" />
     </task>
     <task id="LOCAL-00001" summary="Arena Ranking Screen is basically done, I just need to finish the filter">
       <option name="closed" value="true" />

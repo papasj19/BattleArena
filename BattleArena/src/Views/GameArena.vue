@@ -72,7 +72,7 @@ export default {
                 })
     )
     this.arenaGridCells[this.player2LocationRow][this.player2LocationCol].class = "enemy"
-    this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "player"
+    this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "pl"
 
   },
   methods: {
@@ -191,7 +191,16 @@ export default {
     },
     checkOrientationBounds(column, row) {
       if (this.player1Orientation === "OEST") {
-        return column <= this.player1LocationCol;
+        return column > this.player1LocationCol;
+      }
+      if (this.player1Orientation === "EST") {
+        return column < this.player1LocationCol;
+      }
+      if (this.player1Orientation === "NORD") {
+        return row > this.player1LocationRow;
+      }
+      if (this.player1Orientation === "SUD") {
+        return row < this.player1LocationRow;
       }
     },
     cellClicked(event) {
@@ -200,31 +209,38 @@ export default {
       let row = element.getAttribute("data-grid-row")
       let column = element.getAttribute("data-grid-column")
       if (this.mode === "attack") {
-        let movement = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
-        this.gameLog += movement
-        if (row === this.player2LocationRow && column === this.player2LocationCol) {
-          if (this.player2Health <= 10) {
-            this.player2Health = 0
-            this.arenaGridCells[row][column].class = "noHealth"
-
-            let slain = "\nPlayer 1 defeated Player 2\n"
-            this.gameLog += slain
-          } else {
-            this.player2Health = this.player2Health - 10
-            this.arenaGridCells[row][column].class = "nuke"
-            this.arenaGridCells[row + 1][column].class = "enemy"
-          }
+        if (this.checkOrientationBounds(column, row)) {
+          alert("You can't attack that cell from your current orientation")
         } else {
-          let movement = "\nPlayer 1 missed attack on (" + row + "," + column + ")\n"
-          this.gameLog += movement
-          this.arenaGridCells[row][column].class = "missed"
+          console.log(this.player2LocationCol + " " + this.player2LocationRow)
+          if (this.arenaGridCells[row][column].class === "enemy") {
+            let attackLog = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
+            this.gameLog += attackLog
+            if (this.player2Health <= 10) {
+              this.player2Health = 0
+              this.arenaGridCells[row][column].class = "noHealth"
+
+              let slain = "\nPlayer 1 defeated Player 2\n"
+              this.gameLog += slain
+            } else {
+              this.player2Health = this.player2Health - 10
+              this.arenaGridCells[row][column].class = "nuke"
+              this.player2LocationCol = 5;
+              this.player2LocationRow = 5;
+              this.arenaGridCells[5][5].class = "enemy"
+            }
+          } else {
+            let movement = "\nPlayer 1 missed attack on (" + row + "," + column + ")\n"
+            this.gameLog += movement
+            this.arenaGridCells[row][column].class = "miss"
+          }
         }
       } else {
         if (this.mode === "move") {
           let movement = "\nPlayer 1 moved from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
           this.gameLog += movement
           this.movePlayer(movement)
-          this.arenaGridCells[row][column].class = "player"
+          this.arenaGridCells[row][column].class = "pl"
           this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "desert"
           this.player1LocationRow = row
           this.player1LocationCol = column
@@ -379,7 +395,6 @@ export default {
   width: calc(v-bind(arenaGridSize) * 50px);
   height: calc(v-bind(arenaGridSize) * 50px);
   background-attachment: fixed;
-  background-image: url("BattleArena/src/assets/photos/arrow.png")
 
 }
 
@@ -399,12 +414,16 @@ export default {
   background-color: navajowhite;
 }
 
-.missed {
+.miss {
   background-color: cornflowerblue;
 }
 
-.player {
-  background-color: salmon;
+.pl {
+  height: 100%;
+  width: 100%;
+  background: url("src/assets/photos/newarrow.jpg");
+  background-size: cover;
+  background-position: center center;
 }
 
 .enemy {
