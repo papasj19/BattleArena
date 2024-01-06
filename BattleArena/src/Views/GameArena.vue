@@ -47,6 +47,7 @@ export default {
       player1Health: 100,
       player1Attacks: [],
       player1FutureOrientation: "",
+      player1class: "uparrow",
       player2LocationRow: 1,
       player2LocationCol: 1,
       player2Orientation: "NORD",
@@ -72,7 +73,7 @@ export default {
                 })
     )
     this.arenaGridCells[this.player2LocationRow][this.player2LocationCol].class = "enemy"
-    this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "pl"
+    this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = this.player1Orientation
 
   },
   methods: {
@@ -186,7 +187,9 @@ export default {
         this.changeOrientation(this.player1FutureOrientation)
         let orient = "\nPlayer 1 changed orientation from " + this.player1Orientation + " to " + this.player1FutureOrientation + "\n"
         this.gameLog += orient
+
         this.player1Orientation = this.player1FutureOrientation
+        this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = this.player1Orientation
       }
     },
     checkOrientationBounds(column, row) {
@@ -240,7 +243,7 @@ export default {
           let movement = "\nPlayer 1 moved from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
           this.gameLog += movement
           this.movePlayer(movement)
-          this.arenaGridCells[row][column].class = "pl"
+          this.arenaGridCells[row][column].class = this.player1Orientation
           this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = "desert"
           this.player1LocationRow = row
           this.player1LocationCol = column
@@ -419,9 +422,37 @@ export default {
 }
 
 .pl {
+
+}
+
+.OEST {
   height: 100%;
   width: 100%;
   background: url("src/assets/photos/newarrow.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.EST {
+  height: 100%;
+  width: 100%;
+  background: url("src/assets/photos/rightarrow.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.NORD {
+  height: 100%;
+  width: 100%;
+  background: url("src/assets/photos/uparrow.jpg");
+  background-size: cover;
+  background-position: center center;
+}
+
+.SUD {
+  height: 100%;
+  width: 100%;
+  background: url("src/assets/photos/downarrow.jpg");
   background-size: cover;
   background-position: center center;
 }
