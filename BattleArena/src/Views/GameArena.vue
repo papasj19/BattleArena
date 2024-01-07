@@ -16,6 +16,7 @@ const navigateTo = (page) => {
 <script>
 
 import Api from "../service/Api.js";
+import currentUserToken from "../App.vue";
 
 function attackToCell(attack) {
   let cell = []
@@ -95,7 +96,7 @@ export default {
       });
     },
     getPlayerAttacks() {
-      Api.getPlayerAttacksAPICall(currentUserToken).then((response) => {
+      Api.getPlayerAttackAPICall(currentUserToken).then((response) => {
         if (response.ok) {
           alert("Response OK");
         }
@@ -212,6 +213,7 @@ export default {
       let row = element.getAttribute("data-grid-row")
       let column = element.getAttribute("data-grid-column")
       if (this.mode === "attack") {
+
         if (this.checkOrientationBounds(column, row)) {
           alert("You can't attack that cell from your current orientation")
         } else {
