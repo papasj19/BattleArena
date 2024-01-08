@@ -103,7 +103,7 @@ export default {
 
     },
     attackInGame() {
-      Api.gameAttackAPICall(this.player1Attacks[1].attackID).then((response) => {
+      Api.gameAttackAPICall().then((response) => {
         if (response.ok) {
           return response;
         }
@@ -138,6 +138,7 @@ export default {
       Api.getPlayerAttackAPICall(currentUserToken).then((response) => {
         if (response.ok) {
           alert("Response OK");
+          this.player1Attacks = attacksToCells("change to response.attacks when we have api");
         }
         return response.json();
       }).then((body) => {

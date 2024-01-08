@@ -124,4 +124,14 @@ export default class Api {
         })
     }
 
+    static grabPlayerAPICall(token) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/" + token, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
 }

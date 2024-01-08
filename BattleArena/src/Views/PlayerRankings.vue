@@ -5,6 +5,9 @@ import list from "/src/components/list.vue";
 
 <script>
 
+import currentUserToken from "../App.vue";
+import Api from "../service/Api.js";
+
 function playerToCell(player) {
   let cell = []
   cell.push(player.player_ID)
@@ -28,14 +31,8 @@ export default {
   methods: {
     getAllPlayers() {
       const getAllPlayers = {}
-      fetch("https://balandrau.salle.url.edu/i3/players", {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Bearer': "a"/* bearer token*/
-       }
-      },
-      ).then((response) => {
+
+      Api.grabPlayerAPICall(currentUserToken).then((response) => {
         if (response.ok) {
           alert("Response OK");
         }
