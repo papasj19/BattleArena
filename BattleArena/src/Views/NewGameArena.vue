@@ -11,15 +11,8 @@ import GameArena from "./GameArena.vue";
 import {computed} from "vue";
 
 export default {
-  props: {
-    arenaGridSize: {
-      type: Number,
-      default: 3
-    }
-  },
   data() {
     return {
-      arenaGridCells: [],
       gameID: "",
       size: 0,
       response: "",
@@ -28,23 +21,6 @@ export default {
     }
   },
 
-  computed: {
-    computedArenaGridCells() {
-      console.log(this.arenaGridCells)
-      return this.arenaGridCells.flat();
-    }
-  },
-  mounted() {
-    console.log(this.arenaGridSize)
-    this.arenaGridCells = Array(this.arenaGridSize).fill(0).map(
-        (v1, row) =>
-            Array(this.arenaGridSize).fill(0)
-                .map((v2, column) => {
-                  console.log(this.arenaGridSize)
-                  return {row: row, column: column, class: "ex"}
-                })
-    )
-  },
   methods: {
     navigateTo(page) {
       this.$router.push(`/${page}`);
@@ -86,14 +62,8 @@ export default {
     <section class="flex flex-col sm:flex-row justify-center items-center w-fit">
       <!-- The side of the arena image -->
       <!-- Image container -->
-      <section class="parent">
-        <div v-for="cell in computedArenaGridCells" class="arena-grid-cell" :class="cell.class"
-             :data-grid-row="cell.row"
-             :data-grid-column="cell.column">
-          {{ cell.class }}
-
-        </div>
-
+      <section class="flex-grow sm:flex sm:flex-row items-center p-5 bg-none dark:bg-none">
+        <img src="src/assets/photos/arena_template.png" class="h-auto sm:h-75 mx-auto" alt="new arena"/>
       </section>
       <!-- formatting the right portion of the screen with a box nicely formatted for user visuals  -->
       <section class="flex flex-col justify-around rounded-lg bg-white dark:bg-gray-900">
@@ -114,8 +84,7 @@ export default {
             <option value="9" onclick="setSize(9)">9</option>
             <option value="10" onclick="setSize(10)">10</option>
           </select>
-
-
+          <!-- Health players option -->
           <label for="hpPlay">Player HP: </label>
           <select name="hpPlay" id="hpPlay">
             <option value="50" onclick="setHP(50)">50</option>

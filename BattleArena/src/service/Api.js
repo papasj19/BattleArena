@@ -29,6 +29,18 @@ export default class Api {
         })
     }
 
+    static currentGameAPICALL(currentGameID, token) {
+        const viewGameLogRequest = {gameID: currentGameID}
+        return fetch(this.server + "players/arenas/current", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            },
+            body: JSON.stringify(viewGameLogRequest)
+        })
+    }
+
     static changePlayerOrientationAPICall(direction) {
         const changePlayerOrientationRequest = {playerOrientation: direction}
         return fetch(this.server + "arenas/direction", {
@@ -47,7 +59,7 @@ export default class Api {
         })
     }
 
-    gameAttackAPICall(attackIDGiven) {
+    static gameAttackAPICall(attackIDGiven) {
         const gameAttackRequest = {attack_ID: attackIDGiven}
         return fetch(this.server + "arenas/attack/" + attackIDGiven, {
             method: 'POST',

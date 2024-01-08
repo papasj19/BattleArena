@@ -2,8 +2,8 @@
 
 import {useRouter} from 'vue-router';
 import Api from "../service/Api.js";
-import List from "../components/list.vue";
 import currentUserToken from "../App.vue";
+import List from "../components/list.vue";
 
 const router = useRouter();
 
@@ -22,7 +22,6 @@ function attackToCell(attack) {
   let cell = []
   cell.push(attack.attack_ID)
   cell.push(attack.power)
-  cell.push(attack.equiped)
   return cell
 }
 
@@ -42,6 +41,7 @@ export default {
       arenaGridCells: [],
       movement: "",
       gameLog: "",
+      player1token: currentUserToken,
       player1LocationRow: 6,
       player1LocationCol: 6,
       player1Orientation: "NORD",
@@ -54,7 +54,8 @@ export default {
       player2Orientation: "NORD",
       player2Health: 100,
       gameID: "",
-      mode: ""
+      mode: "",
+      response: ""
     }
   },
   computed: {
@@ -73,11 +74,49 @@ export default {
                   return {row: row, column: column, class: "desert"}
                 })
     )
+    this.grabGameInfo()
+    this.getPlayerAttacks()
     this.arenaGridCells[this.player2LocationRow][this.player2LocationCol].class = "enemy"
     this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = this.player1Orientation
 
   },
   methods: {
+    grabGameInfo() {
+      Api.currentGameAPICALL(this.gameID, this.player1token).then((response) => {
+        if (response.ok) {
+          this.player2LocationRow = response.player2LocationRow;
+          this.player2LocationCol = response.player2LocationCol;
+          this.player1LocationRow = response.player1LocationRow;
+          this.player1LocationCol = response.player1LocationCol;
+          this.player2Health = response.player2Health;
+          this.player1Health = response.player1Health;
+          return response;
+        }
+        return response.json();
+      }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+
+    },
+    attackInGame() {
+      Api.gameAttackAPICall(this.player1Attacks[1].attackID).then((response) => {
+        if (response.ok) {
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
     changeOrientation() {
       Api.changePlayerOrientationAPICall(this.player1FutureOrientation).then((response) => {
         if (response.ok) {
@@ -219,6 +258,7 @@ export default {
         } else {
           console.log(this.player2LocationCol + " " + this.player2LocationRow)
           if (this.arenaGridCells[row][column].class === "enemy") {
+            this.attackInGame()
             let attackLog = "\nPlayer 1 attacked from (" + this.player1LocationRow + "," + this.player1LocationCol + ") to (" + row + "," + column + ")\n"
             this.gameLog += attackLog
             if (this.player2Health <= 10) {
@@ -270,7 +310,7 @@ export default {
         <list
             title="Your Player Attacks"
             subtitle=" "
-            :columns="['Attack ID', 'Power', 'Equipped']"
+            :columns="['Attack ID', 'Power']"
             :content="player1Attacks"
         />
 

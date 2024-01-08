@@ -195,6 +195,7 @@ export default {
           this.response = res.error.message;
         }
       }).catch((error) => {
+        alert("No connection with API");
         this.response = "No connection with API";
       });
     }
