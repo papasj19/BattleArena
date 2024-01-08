@@ -56,14 +56,6 @@ export default class Api {
         })
     }
 
-    static registerUserAPICall(mail, pass) {
-        const createUserRequest = {player_ID: mail, password: pass, img: "hello"};
-        return fetch("https://balandrau.salle.url.edu/i3/players", {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(createUserRequest)
-        })
-    }
 
     static getPlayerAttackAPICall(token) {
         return fetch(this.server + "players/" + token + "/attacks/", {
@@ -103,6 +95,15 @@ export default class Api {
     }
 
     static loginUserAPICall(mail, pass) {
+        const createUserRequest = {player_ID: mail, password: pass};
+        return fetch("https://balandrau.salle.url.edu/i3/players/join", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(createUserRequest)
+        })
+    }
+
+    static registerUserAPICall(mail, pass) {
         const createUserRequest = {player_ID: mail, password: pass, img: "hello"};
         return fetch("https://balandrau.salle.url.edu/i3/players", {
             method: 'POST',
