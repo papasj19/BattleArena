@@ -14,12 +14,25 @@ const navigateTo = (page) => {
 <script>
 import Api from "../service/Api.js";
 
+function attackToCell(attack) {
+  let cell = []
+  cell.push(attack.attack_ID)
+  cell.push(attack.positions)
+  cell.push(attack.power)
+  cell.push(attack.price)
+  cell.push(attack.level_needed)
+
+  return cell
+}
+
+function attacksToCells(attacks) {
+  return attacks.map(attackToCell)
+}
+
 export default {
   data() {
     return {
-      attackID: "",
-      positions: "",
-      image: "",
+      attacks: []
     }
   },
   methods: {
@@ -49,6 +62,29 @@ export default {
         }
         return response.json();
       }).then((res) => {
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
+    getAllAttacks() {
+      const getAllAttacks = {}
+
+      Api.getAttacksAPICall(currentUserToken).then((response) => {
+        if (response.ok) {
+          alert("Response OK");
+        }
+
+        return response.json();
+      }).then((body) => {
+        if (response.ok) {
+          console.log(body)
+          this.attacks = arenasToCells(body);
+        } else {
+          console.log(body)
+        }
         if (res.ok == undefined) {
           this.response = res.error.message;
         }
@@ -130,6 +166,7 @@ export default {
         title="Shop"
         subtitle="Here is the list of all the attacks on sale."
         :columns="['Attack ID', 'Positions', 'Power', 'Price', 'Level needed']"
+        :content="attacks"
     />
 
   </div>

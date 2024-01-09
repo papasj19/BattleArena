@@ -13,6 +13,61 @@ const navigateTo = (page) => {
 
 </script>
 
+<script>
+
+import currentUserToken from "../App.vue";
+import Api from "../service/Api.js";
+
+function arenaToCell(arena) {
+  let cell = []
+  cell.push(arena.game_ID)
+  cell.push(arena.size)
+  cell.push(arena.creation_date)
+  cell.push(arena.HP_max)
+  cell.push(arena.players_games)
+
+  return cell
+}
+
+function arenasToCells(arenas) {
+  return arenas.map(arenaToCell)
+}
+
+export default {
+  data() {
+    return {
+      arenas: []
+    }
+  },
+  methods: {
+    getAllArenas() {
+      const getAllArenas = {}
+
+      Api.getArenasAPICall(currentUserToken).then((response) => {
+        if (response.ok) {
+          alert("Response OK");
+        }
+
+        return response.json();
+      }).then((body) => {
+        if (response.ok) {
+          console.log(body)
+          this.arenas = arenasToCells(body);
+        } else {
+          console.log(body)
+        }
+        if (res.ok == undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    }
+  }
+}
+
+</script>
+
 
 <template>
   <!--setting up background and formating page-->
@@ -82,7 +137,8 @@ const navigateTo = (page) => {
     <list
         title="Arenas Rankings"
         subtitle="Here is the list of the Arena\'s and their contents."
-        :columns="['Game ID', 'Matrix Size', 'Date Created', 'Number of Players', 'Status']"
+        :columns="['Game ID', 'Matrix Size', 'Date Created', 'HP Max', 'Status']"
+        :content="arenas"
     />
 
   </div>

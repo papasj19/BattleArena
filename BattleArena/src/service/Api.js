@@ -124,7 +124,7 @@ export default class Api {
         })
     }
 
-    static grabPlayerAPICall(token) {
+    static getPlayerAPICall(token) {
         return fetch("https://balandrau.salle.url.edu/i3/players/" + token, {
             method: 'GET',
             headers: {
@@ -133,5 +133,26 @@ export default class Api {
             }
         })
     }
+
+    static getArenasAPICall(token) {
+        return fetch("https://balandrau.salle.url.edu/i3/arenas/" + token, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
+    static getAttacksAPICall(token) {
+        return fetch("https://balandrau.salle.url.edu/i3/shop/attacks/" + token, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
 
 }

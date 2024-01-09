@@ -3,7 +3,7 @@
 import {useRouter} from 'vue-router';
 import Api from "../service/Api.js";
 import currentUserToken from "../App.vue";
-import List from "../components/list.vue";
+import list from "/src/components/list.vue";
 
 const router = useRouter();
 

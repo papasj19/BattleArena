@@ -32,7 +32,7 @@ export default {
     getAllPlayers() {
       const getAllPlayers = {}
 
-      Api.grabPlayerAPICall(currentUserToken).then((response) => {
+      Api.getPlayerAPICall(currentUserToken).then((response) => {
         if (response.ok) {
           alert("Response OK");
         }
