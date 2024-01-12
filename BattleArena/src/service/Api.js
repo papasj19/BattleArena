@@ -134,7 +134,7 @@ export default class Api {
     }
 
     static getPlayerAPICall(token) {
-        return fetch("https://balandrau.salle.url.edu/i3/players/" + token, {
+        return fetch("https://balandrau.salle.url.edu/i3/players/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ export default class Api {
     }
 
     static getAttacksAPICall(token) {
-        return fetch("https://balandrau.salle.url.edu/i3/shop/attacks/" + token, {
+        return fetch("https://balandrau.salle.url.edu/i3/shop/attacks/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
