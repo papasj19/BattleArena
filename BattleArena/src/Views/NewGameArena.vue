@@ -46,12 +46,11 @@ export default {
 
         console.log("leave game id3:" + this.leaveGameID)
       }).catch((error) => {
-        alert("No connection with the API");
-        this.response = "No connection with API";
+        alert("No connection with the API lol");
       });
     },
     leaveGame() {
-      Api.leaveGameAPICall(this.leaveGameID, localStorage.getItem("currentUserToken")).then((response) => {
+      Api.leaveGameAPICall("22aq", localStorage.getItem("currentUserToken")).then((response) => {
         if (response.ok === undefined) {
           alert("Wrong Request");
         }

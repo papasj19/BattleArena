@@ -7,8 +7,11 @@
     <list default="true" id="77c6599a-5a34-4741-85d9-1853cba57f41" name="Changes" comment="Arena Ranking Screen is basically done, I just need to finish the filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/ArenaManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/ArenaManage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/NewAtt.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/NewAtt.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/BuySell.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/BuySell.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/LogSign.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/LogSign.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/components/list.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/components/list.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/service/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/service/Api.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -126,7 +129,8 @@
       <workItem from="1704902698514" duration="12000" />
       <workItem from="1705048687273" duration="5109000" />
       <workItem from="1705056271435" duration="7159000" />
-      <workItem from="1705081030658" duration="1225000" />
+      <workItem from="1705081030658" duration="1405000" />
+      <workItem from="1705089965509" duration="3435000" />
     </task>
     <task id="LOCAL-00001" summary="Arena Ranking Screen is basically done, I just need to finish the filter">
       <option name="closed" value="true" />

@@ -40,6 +40,27 @@ export default {
     }
   },
   methods: {
+    cellClicked(cell) {
+      const arenaID = cell.target.innerText;
+      this.joinGame(arenaID);
+      this.$router.push("/GameArena");
+    },
+    joinGame(gameIDpassed) {
+      Api.joinArenaAPICall(gameIDpassed, localStorage.getItem("currentUserToken")).then((response) => {
+        if (response.ok) {
+          alert("Arena Joined");
+          this.response = "Arena Joined!";
+          return response;
+        }
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
+          this.response = res.error.message;
+        }
+      }).catch((error) => {
+        this.response = "No connection with API";
+      });
+    },
     getAllArenas() {
       const getAllArenas = {}
 
@@ -138,6 +159,7 @@ export default {
         subtitle="Here is the list of the Arena\'s and their contents."
         :columns="['Game ID', 'Matrix Size', 'Date Created', 'HP Max', 'Status']"
         :content="arenas"
+        @:dblclick="cellClicked($event)"
     />
 
   </div>

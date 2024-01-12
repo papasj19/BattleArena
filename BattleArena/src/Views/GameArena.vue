@@ -45,14 +45,14 @@ export default {
       player1LocationRow: 2,
       player1LocationCol: 2,
       player1Orientation: "EST",
-      player1Health: 100,
+      player1Health: '',
       player1Attacks: [],
       player1FutureOrientation: "",
       player1class: "uparrow",
       player2LocationRow: 1,
       player2LocationCol: 1,
       player2Orientation: "NORD",
-      player2Health: 0,
+      player2Health: '',
       gameID: "",
       mode: "",
       response: ""
@@ -98,8 +98,7 @@ export default {
         this.player1Health = data.HP_max;
         this.arenaGridSize = data.size;
       }).catch((error) => {
-        alert("No connection with the API");
-        this.response = "No connection with API";
+        alert("No connection with the API loading game");
       });
     },
     attackInGame() {

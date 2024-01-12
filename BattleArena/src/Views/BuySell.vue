@@ -36,17 +36,20 @@ export default {
     }
   },
   methods: {
-    buyAttack() {
-      Api.buyAttackAPICall(this.attackID)
-          .then((response) => {
-            if (response.ok) {
-              alert("Attack bought");
-              this.response = "Attack bought!";
-              return response;
-            }
-            return response.json();
-          }).then((res) => {
-        if (res.ok == undefined) {
+    cellClicked(cell) {
+      const attackID = cell.target.innerText;
+      this.buyAttack(attackID);
+    },
+    buyAttack(attackID) {
+      Api.buyAttackAPICall(attackID, localStorage.getItem("currentUserToken")).then((response) => {
+        if (response.ok) {
+          alert("Attack Bought");
+          return response;
+        }
+
+        return response.json();
+      }).then((res) => {
+        if (res.ok === undefined) {
           this.response = res.error.message;
         }
       }).catch((error) => {
@@ -166,6 +169,7 @@ export default {
         subtitle="Here is the list of all the attacks on sale."
         :columns="['Attack ID', 'Positions', 'Power', 'Price', 'Level needed']"
         :content="attacks"
+        @:dblclick="cellClicked($event)"
     />
 
   </div>

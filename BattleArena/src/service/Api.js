@@ -1,6 +1,16 @@
 export default class Api {
     server = "https://balandrau.salle.url.edu/i3/"
 
+    static joinArenaAPICall(gameId, token) {
+        return fetch("https://balandrau.salle.url.edu/i3/arenas/" + gameId + "/play", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
     static newArenaAPICall(gameId, size, maxHp, token) {
         const createNewArenaRequest = {game_ID: gameId, size: size, HP_max: maxHp}
         console.log("createNewArenaRequest");
@@ -106,12 +116,13 @@ export default class Api {
         })
     }
 
-    static buyAttackAPICall(attID) {
-        const buyAttackRequest = {attack_ID: attID}
-        return fetch("https://balandrau.salle.url.edu/i3/shop/" + attID + "/attacks", {
+    static buyAttackAPICall(attID, token) {
+        return fetch("https://balandrau.salle.url.edu/i3/shop/attacks/" + attID + "/buy", {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(buyAttackRequest)
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
         })
     }
 

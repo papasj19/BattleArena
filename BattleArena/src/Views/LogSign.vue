@@ -180,6 +180,7 @@ export default {
         this.response = "No connection with API";
       });
     },
+
     loginUser: function () {
       Api.loginUserAPICall(this.playerMailL, this.playerPasswordL).then((response) => {
         if (response.ok === undefined) {
