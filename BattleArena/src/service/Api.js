@@ -16,11 +16,14 @@ export default class Api {
     }
 
 
-    static leaveGameAPICall(currentGameID) {
+    static leaveGameAPICall(currentGameID, token) {
         const leaveGameRequest = {gameID: currentGameID}
-        return fetch(this.server + "arena/" + currentGameID + "/play", {
+        return fetch("https://balandrau.salle.url.edu/i3/arenas/" + currentGameID + "/play", {
             method: 'DELETE',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            },
             body: JSON.stringify(leaveGameRequest)
         })
     }
@@ -35,14 +38,12 @@ export default class Api {
     }
 
     static currentGameAPICALL(currentGameID, token) {
-        const viewGameLogRequest = {gameID: currentGameID}
-        return fetch(this.server + "arenas/" + currentGameID, {
+        return fetch("https://balandrau.salle.url.edu/i3/players/arenas/current", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Bearer': token
-            },
-            body: JSON.stringify(viewGameLogRequest)
+            }
         })
     }
 

@@ -72,7 +72,7 @@ export default {
     getAllAttacks() {
       const getAllAttacks = {}
 
-      Api.getAttacksAPICall(currentUserToken).then((response) => {
+      Api.getAttacksAPICall(localStorage.getItem("currentUserToken")).then((response) => {
         if (response.ok) {
           alert("Response OK");
         }

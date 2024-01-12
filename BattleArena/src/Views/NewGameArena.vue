@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       gameID: "",
+      leaveGameID: "",
       size: 2,
       response: "",
       numberOfAttacks: 0,
@@ -32,12 +33,46 @@ export default {
     setSize(sizeg) {
       this.size = sizeg;
     },
+    grabGameInfo() {
+      Api.currentGameAPICALL(this.gameID, localStorage.getItem("currentUserToken")).then((response) => {
+        if (response.ok === undefined) {
+          alert("Wrong Request");
+        }
+        return response.json();
+      }).then((data) => {
+        console.log(data);
+
+        this.leaveGameID = data[0].game_ID;
+
+        console.log("leave game id3:" + this.leaveGameID)
+      }).catch((error) => {
+        alert("No connection with the API");
+        this.response = "No connection with API";
+      });
+    },
+    leaveGame() {
+      Api.leaveGameAPICall(this.leaveGameID, localStorage.getItem("currentUserToken")).then((response) => {
+        if (response.ok === undefined) {
+          alert("Wrong Request");
+        }
+        return response.json();
+      }).then((data) => {
+        console.log(data);
+        this.gameID = "";
+        console.log("wtf" + this.gameID)
+      }).catch((error) => {
+        alert("No connection with the API");
+        this.response = "No connection with API";
+      });
+    },
     createNewArena() {
+
+      localStorage.setItem("currentGameID", this.gameID);
       Api.newArenaAPICall(this.gameID, this.size, this.playerHP, localStorage.getItem("currentUserToken")
       ).then((response) => {
         console.log("new arena api call; token: " + this.$root.currentUserToken);
         if (response.ok) {
-          alert("Weird");
+          this.$router.push("/GameArena");
         }
 
         return response.json();
@@ -45,7 +80,6 @@ export default {
         if (res.ok === undefined) {
           this.response = res.error.message;
         }
-        //this.$router.push("/GameArena");
         this.response = "Arena Entered!";
       }).catch((error) => {
         this.response = "No connection with API";
@@ -110,6 +144,15 @@ export default {
               class="focus:outline-none text-white m-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               v-on:click="createNewArena">
             Apply Filter(s)
+          </button>
+          <label>Hit Testing before Leave</label>
+          <button
+              class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+              v-on:click="leaveGame">Leave Entered Game
+          </button>
+          <button
+              class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 m-2"
+              v-on:click="grabGameInfo">testing
           </button>
         </form>
       </section>

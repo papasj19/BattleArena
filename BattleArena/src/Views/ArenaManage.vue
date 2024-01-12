@@ -43,7 +43,7 @@ export default {
     getAllArenas() {
       const getAllArenas = {}
 
-      Api.getArenasAPICall(currentUserToken).then((response) => {
+      Api.getArenasAPICall(localStorage.getItem("currentUserToken")).then((response) => {
         if (response.ok) {
           alert("testing 1");
         }

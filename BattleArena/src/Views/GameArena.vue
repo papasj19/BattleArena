@@ -33,7 +33,7 @@ export default {
   props: {
     arenaGridSize: {
       type: Number,
-      default: 7
+      default: 5
     }
   },
   data() {
@@ -52,7 +52,7 @@ export default {
       player2LocationRow: 1,
       player2LocationCol: 1,
       player2Orientation: "NORD",
-      player2Health: 100,
+      player2Health: 0,
       gameID: "",
       mode: "",
       response: ""
@@ -65,6 +65,7 @@ export default {
     }
   },
   mounted() {
+    this.grabGameInfo()
     console.log(this.arenaGridSize)
     this.arenaGridCells = Array(this.arenaGridSize).fill(0).map(
         (v1, row) =>
@@ -74,7 +75,6 @@ export default {
                   return {row: row, column: column, class: "desert"}
                 })
     )
-    this.grabGameInfo()
     this.getPlayerAttacks()
     const rndInt1 = Math.floor(Math.random() * 4) + 1
     const rndInt2 = Math.floor(Math.random() * 4) + 1
@@ -86,25 +86,21 @@ export default {
   },
   methods: {
     grabGameInfo() {
-      Api.currentGameAPICALL(this.gameID, this.player1token).then((response) => {
-        if (response.ok) {
-          this.player2LocationRow = response.player2LocationRow;
-          this.player2LocationCol = response.player2LocationCol;
-          this.player1LocationRow = response.player1LocationRow;
-          this.player1LocationCol = response.player1LocationCol;
-          this.player2Health = response.player2Health;
-          this.player1Health = response.player1Health;
-          return response;
+      Api.currentGameAPICALL(localStorage.getItem("currentGameID"), localStorage.getItem("currentUserToken")).then((response) => {
+        if (response.ok === undefined) {
+          alert("Wrong Request");
         }
         return response.json();
-      }).then((res) => {
-        if (res.ok == undefined) {
-          this.response = res.error.message;
-        }
+      }).then((data) => {
+        this.player2LocationRow = data.players_games[0].y_game;
+        this.player2LocationCol = data.players_games[0].x_game;
+        this.player2Health = data.HP_max;
+        this.player1Health = data.HP_max;
+        this.arenaGridSize = data.size;
       }).catch((error) => {
+        alert("No connection with the API");
         this.response = "No connection with API";
       });
-
     },
     attackInGame() {
       Api.gameAttackAPICall().then((response) => {

@@ -7,8 +7,8 @@
     <list default="true" id="77c6599a-5a34-4741-85d9-1853cba57f41" name="Changes" comment="Arena Ranking Screen is basically done, I just need to finish the filter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/ArenaManage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/ArenaManage.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/BuySell.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/BuySell.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/GameArena.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/LogSign.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/LogSign.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/Views/NewGameArena.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BattleArena/src/service/Api.js" beforeDir="false" afterPath="$PROJECT_DIR$/BattleArena/src/service/Api.js" afterDir="false" />
     </list>
@@ -125,7 +125,8 @@
       <workItem from="1704897605579" duration="40000" />
       <workItem from="1704902625096" duration="43000" />
       <workItem from="1704902698514" duration="12000" />
-      <workItem from="1705048687273" duration="2742000" />
+      <workItem from="1705048687273" duration="5109000" />
+      <workItem from="1705056271435" duration="7042000" />
     </task>
     <task id="LOCAL-00001" summary="Arena Ranking Screen is basically done, I just need to finish the filter">
       <option name="closed" value="true" />
