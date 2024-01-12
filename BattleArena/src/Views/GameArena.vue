@@ -42,9 +42,9 @@ export default {
       movement: "",
       gameLog: "",
       player1token: currentUserToken,
-      player1LocationRow: 6,
-      player1LocationCol: 6,
-      player1Orientation: "NORD",
+      player1LocationRow: 2,
+      player1LocationCol: 2,
+      player1Orientation: "EST",
       player1Health: 100,
       player1Attacks: [],
       player1FutureOrientation: "",
@@ -76,6 +76,10 @@ export default {
     )
     this.grabGameInfo()
     this.getPlayerAttacks()
+    const rndInt1 = Math.floor(Math.random() * 4) + 1
+    const rndInt2 = Math.floor(Math.random() * 4) + 1
+    this.player1LocationRow = rndInt1
+    this.player1LocationCol = rndInt2
     this.arenaGridCells[this.player2LocationRow][this.player2LocationCol].class = "enemy"
     this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = this.player1Orientation
 
@@ -135,9 +139,9 @@ export default {
       });
     },
     getPlayerAttacks() {
-      Api.getPlayerAttackAPICall(currentUserToken).then((response) => {
+      Api.getPlayerAttackAPICall(localStorage.getItem("currentUserToken")).then((response) => {
         if (response.ok) {
-          alert("Response OK");
+          console.log("getPlayerAttackAPICall");
           this.player1Attacks = attacksToCells("change to response.attacks when we have api");
         }
         return response.json();
@@ -210,7 +214,7 @@ export default {
       });
     },
     touchedQButton() {
-      alert("To move, click the move button then double click on the cell you want to move to. \nTo attack, click on the attack button and then double click on the cell you want to attack. \nTo change orientation, click on the corresponding arrow button with the direction you want to face.");
+      alert("To move, click the move button then double click on the cell you want to move to. \nTo attack, click on the attack button and then double click on the cell you want to attack. \nTo change orientation, click on the corresponding arrow button with the direction you want to face.\n To move Player 2 press fetch game info.");
     },
     touchedMoveButton() {
       this.mode = "move";
@@ -354,6 +358,11 @@ export default {
         <button
             class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
             v-on:click="touchedQButton">What To Do?
+        </button>
+
+        <button
+            class="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm p-2 m-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800"
+            v-on:click="grabGameInfo">Fetch Game Info
         </button>
 
       </section>

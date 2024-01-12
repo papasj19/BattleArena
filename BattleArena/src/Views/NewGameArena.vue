@@ -8,16 +8,17 @@ import Api from "../service/Api.js";
 import Api from "../service/Api.js";
 import gameArena from "./GameArena.vue";
 import GameArena from "./GameArena.vue";
+import currentUserToken from "../App.vue";
 import {computed} from "vue";
 
 export default {
   data() {
     return {
       gameID: "",
-      size: 0,
+      size: 2,
       response: "",
       numberOfAttacks: 0,
-      playerHP: 0
+      playerHP: 50
     }
   },
 
@@ -29,14 +30,14 @@ export default {
       this.playerHP = HP;
     },
     setSize(sizeg) {
-      this.arenaGridSize = sizeg;
+      this.size = sizeg;
     },
     createNewArena() {
-      Api.newArenaAPICall(this.gameID, this.size, this.playerHP).then((response) => {
+      Api.newArenaAPICall(this.gameID, this.size, this.playerHP, localStorage.getItem("currentUserToken")
+      ).then((response) => {
+        console.log("new arena api call; token: " + this.$root.currentUserToken);
         if (response.ok) {
-          alert("Arena Entered");
-          this.response = "Arena Entered!";
-          return response;
+          alert("Weird");
         }
 
         return response.json();
@@ -44,6 +45,8 @@ export default {
         if (res.ok === undefined) {
           this.response = res.error.message;
         }
+        //this.$router.push("/GameArena");
+        this.response = "Arena Entered!";
       }).catch((error) => {
         this.response = "No connection with API";
       });
@@ -68,9 +71,12 @@ export default {
       <!-- formatting the right portion of the screen with a box nicely formatted for user visuals  -->
       <section class="flex flex-col justify-around rounded-lg bg-white dark:bg-gray-900">
         <!-- Centering the right portion of the screen  -->
-        <section class="p-4 flex flex-col">
+        <form class="p-4 flex flex-col" @submit.prevent>
           <!-- centering the title of options section, giving the user options to pre load their arena -->
           <h2 class="text-center">Pre-Load:</h2>
+
+          <label for="Game Name">Game Name</label>
+          <input placeholder="game name" name="Game Name" v-model="gameID">
           <!-- Size of arena option -->
           <label for="sizeMatrix">Matrix Size: </label>
           <select name="sizeMatrix" id="sizeMatrix">
@@ -102,15 +108,15 @@ export default {
           <!-- Submit filters button -->
           <button
               class="focus:outline-none text-white m-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              v-on:click="createNewArena" @click="navigateTo('GameArena')">
+              v-on:click="createNewArena">
             Apply Filter(s)
           </button>
-        </section>
+        </form>
       </section>
     </section>
     <button
         class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 m-2"
-        v-on:click="createNewArena" @click="navigateTo('GameArena')">Create Arena
+        v-on:click="createNewArena">Create Arena
     </button>
   </div>
 

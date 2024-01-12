@@ -45,7 +45,7 @@ export default {
 
       Api.getArenasAPICall(currentUserToken).then((response) => {
         if (response.ok) {
-          alert("Response OK");
+          alert("testing 1");
         }
 
         return response.json();

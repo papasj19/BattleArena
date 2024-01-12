@@ -182,20 +182,20 @@ export default {
     },
     loginUser: function () {
       Api.loginUserAPICall(this.playerMailL, this.playerPasswordL).then((response) => {
-        if (response.ok) {
-          alert("Logged In");
-          this.response = "Logged In!";
-          currentUserToken = response.token;
-          return response;
+        if (response.ok === undefined) {
+          alert("Wrong Request");
         }
-
         return response.json();
-      }).then((res) => {
-        if (res.ok === undefined) {
-          this.response = res.error.message;
-        }
+      }).then((data) => {
+        console.log(data);
+        alert("Logged In");
+        this.response = "Logged In!";
+        this.$root.currentUserToken = data.token;
+        console.log("token: " + this.$root.currentUserToken);
+        localStorage.setItem("currentUserToken", data.token);
+        this.$router.push("/newgamearena");
       }).catch((error) => {
-        alert("No connection with API");
+        alert("No connection with the API");
         this.response = "No connection with API";
       });
     }

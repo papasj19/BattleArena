@@ -1,11 +1,16 @@
 export default class Api {
     server = "https://balandrau.salle.url.edu/i3/"
 
-    static newArenaAPICall(gameId, size, maxHp) {
-        const createNewArenaRequest = {gameID: gameId, size: size, HP_max: maxHp}
-        return fetch(this.server + "/arenas", {
+    static newArenaAPICall(gameId, size, maxHp, token) {
+        const createNewArenaRequest = {game_ID: gameId, size: size, HP_max: maxHp}
+        console.log("createNewArenaRequest");
+        console.log(createNewArenaRequest);
+        return fetch("https://balandrau.salle.url.edu/i3/arenas", {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            },
             body: JSON.stringify(createNewArenaRequest)
         })
     }
@@ -31,7 +36,7 @@ export default class Api {
 
     static currentGameAPICALL(currentGameID, token) {
         const viewGameLogRequest = {gameID: currentGameID}
-        return fetch(this.server + "players/arenas/current", {
+        return fetch(this.server + "arenas/" + currentGameID, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
