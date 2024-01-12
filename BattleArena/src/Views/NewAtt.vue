@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     createNewAttack() {
-      Api.newAttackAPICall(this.attackID, this.positions, this.image).then((response) => {
+      Api.newAttackAPICall(this.attackID, this.positions, this.image, localStorage.getItem("currentUserToken")).then((response) => {
         if (response.ok) {
           alert("Attack Created");
           this.response = "Attack created!";

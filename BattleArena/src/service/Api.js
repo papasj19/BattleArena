@@ -85,11 +85,14 @@ export default class Api {
         })
     }
 
-    static newAttackAPICall(id, pos, img) {
-        const createAttackRequest = {attack_ID: id, position: pos, img: img}
+    static newAttackAPICall(id, pos, img, token) {
+        const createAttackRequest = {attack_ID: id, positions: pos, img: img}
         return fetch("https://balandrau.salle.url.edu/i3/shop/attacks", {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            },
             body: JSON.stringify(createAttackRequest)
         })
     }
@@ -141,7 +144,7 @@ export default class Api {
     }
 
     static getArenasAPICall(token) {
-        return fetch("https://balandrau.salle.url.edu/i3/arenas/" + token, {
+        return fetch("https://balandrau.salle.url.edu/i3/arenas/", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

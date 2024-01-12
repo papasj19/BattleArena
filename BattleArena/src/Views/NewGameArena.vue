@@ -127,6 +127,7 @@ export default {
           <!-- Health players option -->
           <label for="hpPlay">Player HP: </label>
           <select name="hpPlay" id="hpPlay">
+            <option value="50" onclick="setHP(15)">15</option>
             <option value="50" onclick="setHP(50)">50</option>
             <option value="75" onclick="setHP(75)">75</option>
             <option value="100" onclick="setHP(100)">100</option>

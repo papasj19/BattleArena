@@ -44,22 +44,17 @@ export default {
       const getAllArenas = {}
 
       Api.getArenasAPICall(localStorage.getItem("currentUserToken")).then((response) => {
-        if (response.ok) {
-          alert("testing 1");
+        if (response.ok === undefined) {
+          alert("Wrong Request");
         }
-
         return response.json();
-      }).then((body) => {
-        if (response.ok) {
-          console.log(body)
-          this.arenas = arenasToCells(body);
-        } else {
-          console.log(body)
-        }
-        if (res.ok == undefined) {
-          this.response = res.error.message;
-        }
+      }).then((data) => {
+        console.log(data);
+
+        this.arenas = arenasToCells(data);
+        console.log(this.arenas)
       }).catch((error) => {
+        alert("No connection with the API");
         this.response = "No connection with API";
       });
     }
@@ -128,6 +123,10 @@ export default {
           <button
               class="focus:outline-none m-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full sm:w-auto"
               @click="navigateTo('NewGameArena')">New Arena
+          </button>
+          <button
+              class="focus:outline-none m-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full sm:w-auto"
+              @click=getAllArenas>Load Arenas
           </button>
         </div>
 
