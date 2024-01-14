@@ -25,7 +25,7 @@ export default {
 
   methods: {
     navigateTo(page) {
-      this.$router.push(`/${page}`);
+      this.$router.push("/GameArenaBlank");
     },
     setHP(HP) {
       this.playerHP = HP;

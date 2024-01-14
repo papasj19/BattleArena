@@ -34,7 +34,7 @@ export default {
   props: {
     arenaGridSize: {
       type: Number,
-      default: 4
+      default: 6
     }
   },
   data() {
@@ -46,7 +46,7 @@ export default {
       player1LocationRow: 2,
       player1LocationCol: 2,
       player1Orientation: "EST",
-      player1Health: 15,
+      player1Health: 100,
       player1Attacks: [],
       player1FutureOrientation: "",
       player1Damage: 0,
@@ -54,7 +54,7 @@ export default {
       player2LocationRow: 1,
       player2LocationCol: 1,
       player2Orientation: "NORD",
-      player2Health: 15,
+      player2Health: 100,
       gameID: "",
       mode: "",
       response: ""
