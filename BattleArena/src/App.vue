@@ -13,7 +13,12 @@ export default {
   data() {
     return {
       currentGameId: "",
-      currentUserToken: ""
+      currentUserID: "",
+      currentUserToken: "",
+      viewProfUserID: "",
+      viewProfUserToken: "",
+      HP: 0,
+      size: 0
     }
   }
 }

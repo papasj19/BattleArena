@@ -29,9 +29,12 @@ export default {
     },
     setHP(HP) {
       this.playerHP = HP;
+      localStorage.setItem("HP", HP);
+      this.$root.playerHP = HP;
     },
     setSize(sizeg) {
       this.size = sizeg;
+      this.$root.size = sizeg;
     },
     grabGameInfo() {
       Api.currentGameAPICALL(this.gameID, localStorage.getItem("currentUserToken")).then((response) => {
@@ -45,12 +48,13 @@ export default {
         this.leaveGameID = data[0].game_ID;
 
         console.log("leave game id3:" + this.leaveGameID)
+        alert("Game Info Grabbed");
       }).catch((error) => {
-        alert("No connection with the API lol");
+        alert("No connection with the API grabbing info");
       });
     },
     leaveGame() {
-      Api.leaveGameAPICall("22aq", localStorage.getItem("currentUserToken")).then((response) => {
+      Api.leaveGameAPICall(this.leaveGameID, localStorage.getItem("currentUserToken")).then((response) => {
         if (response.ok === undefined) {
           alert("Wrong Request");
         }
@@ -58,25 +62,37 @@ export default {
       }).then((data) => {
         console.log(data);
         this.gameID = "";
-        console.log("wtf" + this.gameID)
+        alert("Game Left");
       }).catch((error) => {
-        alert("No connection with the API");
-        this.response = "No connection with API";
+        if (error.statusCode === 204) {
+          alert("Successfully left game");
+        } else {
+          alert("No connection with the API");
+        }
+        this.response = "No connection with API leaving game";
       });
     },
     createNewArena() {
 
+      localStorage.setItem("size", this.size);
+      localStorage.setItem("HP", this.playerHP);
       localStorage.setItem("currentGameID", this.gameID);
       Api.newArenaAPICall(this.gameID, this.size, this.playerHP, localStorage.getItem("currentUserToken")
       ).then((response) => {
         console.log("new arena api call; token: " + this.$root.currentUserToken);
         if (response.ok) {
-          this.$router.push("/GameArena");
+          this.$router.push("/GameArenaBlank");
         }
 
         return response.json();
       }).then((res) => {
         if (res.ok === undefined) {
+          if (res.error.statusCode === 412) {
+            alert("Put Game ID");
+          }
+          if (res.error.statusCode === 403) {
+            alert("It appears you are already in a game.\nTo leave the game fetch the info with the green testing button.\nAfter Hit the red leave game button. \nYou are now able to create your game and join:)");
+          }
           this.response = res.error.message;
         }
         this.response = "Arena Entered!";
@@ -126,7 +142,7 @@ export default {
           <!-- Health players option -->
           <label for="hpPlay">Player HP: </label>
           <select name="hpPlay" id="hpPlay">
-            <option value="50" onclick="setHP(15)">15</option>
+            <option value="15" onclick="setHP(15)">15</option>
             <option value="50" onclick="setHP(50)">50</option>
             <option value="75" onclick="setHP(75)">75</option>
             <option value="100" onclick="setHP(100)">100</option>

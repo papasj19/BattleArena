@@ -7,6 +7,7 @@ import list from "/src/components/list.vue";
 
 import currentUserToken from "../App.vue";
 import Api from "../service/Api.js";
+import router from "../Router/index.js";
 
 function playerToCell(player) {
   let cell = []
@@ -25,10 +26,37 @@ function playersToCells(players) {
 export default {
   data() {
     return {
-      players: []
+      players: [],
+      viewPl: ""
     }
   },
   methods: {
+    cellClicked(event) {
+      const id = event.target.innerText
+      console.log(id)
+      this.$root.viewProfUserID = id;
+      this.getMorePlayerInfo();
+      this.pusher();
+    },
+    pusher() {
+      this.$router.push("/MoreProfile");
+    },
+
+
+    getMorePlayerInfo() {
+      Api.getSinglePlayerAPICall(localStorage.getItem("currentUserToken"), this.viewPl).then((response) => {
+        if (response.ok === undefined) {
+          alert("Wrong Request");
+        }
+        return response.json();
+      }).then((data) => {
+        console.log(data);
+        this.viewPl = data.player_ID;
+        localStorage.setItem("viewProfUserID", this.viewPl);
+      }).catch((error) => {
+        alert("No connection with the API single player");
+      });
+    },
     getAllPlayers() {
       const getAllPlayers = {}
 
@@ -108,9 +136,9 @@ export default {
               </ul>
             </div>
             <button
-              class="focus:outline-none m-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full sm:w-auto"
-              @click="getAllPlayers">Load Players
-          </button>
+                class="focus:outline-none m-2 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 w-full sm:w-auto"
+                @click="getAllPlayers">Load Players
+            </button>
           </div>
         </div>
 
@@ -123,6 +151,7 @@ export default {
         subtitle="Here is the ranking of the players."
         :columns="['Player ID', 'Experience', 'Level', 'Coins']"
         :content="players"
+        @:click="cellClicked($event)"
     />
 
   </div>

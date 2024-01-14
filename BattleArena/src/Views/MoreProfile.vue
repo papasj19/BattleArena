@@ -17,55 +17,17 @@
       </div>
 
 
-      <!-- Modify Attacks Table -->
-      <div class="p-4 text-left">
-        <div class="profile screen">
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" class="px-6 py-3">Equip/Unequip Attacks</th>
-                <th scope="col" class="px-6 py-3"><span class="sr-only">Actions</span></th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td scope="row" class="px-6 py-4">
-                  <input v-model="newAttackID" class="w-full border border-gray-300 p-1" placeholder="Attack ID">
-                </td>
-                <td class="px-6 py-4 text-right">
-                  <button @click="equipAttack" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                    Equip
-                  </button>
-                  <button @click="unequipAttack" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                    Unequip
-                  </button>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
       <section class="flex flex-col">
         <list
-            title="Your Player Attacks"
+            title="The Player Attacks"
             subtitle=" "
-            :columns="['Attack ID', 'Power', 'Positions', 'Equipped']"
+            :columns="['Attack ID', 'Power', 'Positions']"
             :content="attacksFromAPI"
         />
 
       </section>
 
 
-      <div class="text-center mt-4">
-        <button
-            class="bg-red-500 text-white font-medium px-3 py-1 rounded hover:bg-red-600"
-            @click="confirmDeleteAccount"
-        >
-          Delete Account
-        </button>
-      </div>
     </div>
 
 
@@ -85,7 +47,7 @@
         <section class="flex flex-col">
           <list
               title="Games"
-              subtitle="Here is the list of the Arena\'s youve played."
+              subtitle="Here is the list of the Arena\'s they have played."
               :columns="['Game ID', 'Matrix Size', 'Date Created']"
               :content="gamesFromAPI"
               @:dblclick="cellClicked($event)"
@@ -113,7 +75,6 @@ function attackToCell(attack) {
   cell.push(attack.attack_ID)
   cell.push(attack.power)
   cell.push(attack.positions)
-  cell.push(attack.equipped)
   return cell
 }
 
@@ -155,20 +116,16 @@ export default {
   },
 
   methods: {
-    nextPage() {
-      this.$router.push('/MoreProfile');
-    },
-
 
     grabInfo() {
-      this.getPlayerInfo();
-      this.getMorePlayerInfo();
-      this.getPlayerAttacks();
-      this.getFinishedArenas();
+      this.getOPlayerInfo();
+      this.getOMorePlayerInfo();
+      this.getOPlayerAttacks();
+      this.getOFinishedArenas();
     },
 
-    getFinishedArenas() {
-      Api.getFinishedArenasPlayerAPICall(localStorage.getItem("currentUserToken")).then((response) => {
+    getOFinishedArenas() {
+      Api.getFinishedArenasOtherPlayerAPICall(localStorage.getItem("currentUserToken"), this.$root.viewProfUserID).then((response) => {
         if (response.ok === undefined) {
           alert("Wrong Request");
         }
@@ -182,8 +139,8 @@ export default {
         this.response = "No connection with API";
       });
     },
-    getMorePlayerInfo() {
-      Api.getSinglePlayerAPICall(localStorage.getItem("currentUserToken"), localStorage.getItem("currentUserID")).then((response) => {
+    getOMorePlayerInfo() {
+      Api.getOtherPlayerMoreInfoAPICall(localStorage.getItem("currentUserToken"), this.$root.viewProfUserID).then((response) => {
         if (response.ok === undefined) {
           alert("Wrong Request");
         }
@@ -199,8 +156,8 @@ export default {
     },
 
 
-    getPlayerInfo() {
-      Api.getPlayerInfoAPICall(localStorage.getItem("currentUserToken")).then((response) => {
+    getOPlayerInfo() {
+      Api.getOtherPlayerInfoAPICall(localStorage.getItem("currentUserToken"), this.$root.viewProfUserID).then((response) => {
         if (response.ok === undefined) {
           alert("Wrong Request");
         }
@@ -215,8 +172,8 @@ export default {
     },
 
 
-    getPlayerAttacks() {
-      Api.getPlayerAttackAPICall(localStorage.getItem("currentUserToken")).then((response) => {
+    getOPlayerAttacks() {
+      Api.getOPlayerAttackAPICall(localStorage.getItem("currentUserToken"), this.$root.viewProfUserID).then((response) => {
         if (response.ok === undefined) {
           alert("Wrong Request");
         }

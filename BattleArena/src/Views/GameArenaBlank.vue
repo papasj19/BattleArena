@@ -34,7 +34,7 @@ export default {
   props: {
     arenaGridSize: {
       type: Number,
-      default: 6
+      default: 4
     }
   },
   data() {
@@ -46,7 +46,7 @@ export default {
       player1LocationRow: 2,
       player1LocationCol: 2,
       player1Orientation: "EST",
-      player1Health: localStorage.getItem("HP"),
+      player1Health: 15,
       player1Attacks: [],
       player1FutureOrientation: "",
       player1Damage: 0,
@@ -54,7 +54,7 @@ export default {
       player2LocationRow: 1,
       player2LocationCol: 1,
       player2Orientation: "NORD",
-      player2Health: localStorage.getItem("HP"),
+      player2Health: 15,
       gameID: "",
       mode: "",
       response: ""
@@ -82,7 +82,6 @@ export default {
     const rndInt2 = Math.floor(Math.random() * 4) + 1
     this.player1LocationRow = rndInt1
     this.player1LocationCol = rndInt2
-    this.arenaGridCells[this.player2LocationRow][this.player2LocationCol].class = "enemy"
     this.arenaGridCells[this.player1LocationRow][this.player1LocationCol].class = this.player1Orientation
 
   },
@@ -263,7 +262,7 @@ export default {
               let slain = "\nPlayer 1 defeated Player 2\n"
               this.gameLog += slain
             } else {
-              this.player2Health = this.player2Health - this.player1Damage
+              this.player2Health = this.player2Health - 10
               this.arenaGridCells[row][column].class = "nuke"
               this.player2LocationCol = 5;
               this.player2LocationRow = 5;
@@ -373,7 +372,7 @@ export default {
 
       <!-- Player info sections -->
       <section
-          class="flex flex-row sm:flex-col justify-around items-center h-full rounded-lg bg-white dark:bg-gray-900 m-2 w-screen sm:w-fit">
+          class="flex flex-row sm:flex-col justify-around items-center rounded-lg bg-white dark:bg-gray-900 m-2 w-screen sm:w-fit">
         <!-- Player 1 Section -->
         <section class="p-2 flex-1">
           <h2 class="text-center">Player 1</h2>
@@ -382,17 +381,6 @@ export default {
           <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
             <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
                  :style="{ width: player1Health + '%' }"> {{ this.player1Health }}
-            </div>
-          </div>
-        </section>
-        <!-- Player 2 Section -->
-        <section class="px-2 flex-1">
-          <h2 class="text-center">Player 2</h2>
-          <img src="src/assets/photos/rick.png" class="object-cover h-14 w-14 sm:h-24 sm:w-24 mx-auto"
-               alt="Player 2"/>
-          <div class="w-full mt-1 bg-gray-200 rounded-full dark:bg-gray-700">
-            <div class="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full"
-                 :style="{ width: player2Health + '%' }"> {{ this.player2Health }}
             </div>
           </div>
         </section>

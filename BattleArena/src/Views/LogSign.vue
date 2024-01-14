@@ -193,6 +193,7 @@ export default {
         this.response = "Logged In!";
         this.$root.currentUserToken = data.token;
         console.log("token: " + this.$root.currentUserToken);
+        localStorage.setItem("currentUserID", data.player_ID);
         localStorage.setItem("currentUserToken", data.token);
         this.$router.push("/newgamearena");
       }).catch((error) => {

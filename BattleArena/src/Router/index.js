@@ -11,6 +11,8 @@ import App from "../App.vue";
 import home from "../Views/DefaultStartScreen.vue";
 import DefaultStartScreen from "../Views/DefaultStartScreen.vue";
 import Home from "../Views/Home.vue";
+import GameArenaBlank from "../Views/GameArenaBlank.vue";
+import MoreProfile from "../Views/MoreProfile.vue";
 
 const routes = [
 
@@ -40,9 +42,19 @@ const routes = [
         component: PlayerRankings
     },
     {
+        path: '/MoreProfile',
+        name: 'MoreProfile',
+        component: MoreProfile
+    },
+    {
         path: '/NewGameArena',
         name: 'NewGameArena',
         component: NewGameArena
+    },
+    {
+        path: '/GameArenaBlank',
+        name: 'GameArenaBlank',
+        component: GameArenaBlank
     },
     {
         path: '/GameArena',

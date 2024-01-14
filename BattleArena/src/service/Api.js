@@ -27,14 +27,12 @@ export default class Api {
 
 
     static leaveGameAPICall(currentGameID, token) {
-        const leaveGameRequest = {gameID: currentGameID}
         return fetch("https://balandrau.salle.url.edu/i3/arenas/" + currentGameID + "/play", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'Bearer': token
-            },
-            body: JSON.stringify(leaveGameRequest)
+            }
         })
     }
 
@@ -86,7 +84,7 @@ export default class Api {
 
 
     static getPlayerAttackAPICall(token) {
-        return fetch(this.server + "players/" + token + "/attacks/", {
+        return fetch("https://balandrau.salle.url.edu/i3/players/attacks", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -164,8 +162,100 @@ export default class Api {
         })
     }
 
+    static getFinishedArenasPlayerAPICall(token) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/games/finished", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
     static getAttacksAPICall(token) {
         return fetch("https://balandrau.salle.url.edu/i3/shop/attacks/", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
+    static equipAttackAPICall(id, token) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/attacks/" + id, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Bearer: token
+            }
+        })
+    }
+
+    static unequipAttackAPICall(eID, token) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/attacks/" + eID, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            },
+        })
+    }
+
+
+    static getPlayerInfoAPICall(token) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/statistics", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
+
+    static getSinglePlayerAPICall(token, playerID) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/" + playerID, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
+    static getFinishedArenasOtherPlayerAPICall(token, id) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/" + id + "/games/finished", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
+    static getOtherPlayerInfoAPICall(token, id) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/" + id + "/statistics", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
+    static getOtherPlayerMoreInfoAPICall(token, id) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/" + id, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Bearer': token
+            }
+        })
+    }
+
+    static getOPlayerAttackAPICall(token, id) {
+        return fetch("https://balandrau.salle.url.edu/i3/players/" + id + "/attacks", {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
